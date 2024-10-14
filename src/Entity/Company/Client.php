@@ -2,12 +2,18 @@
 
 namespace App\Entity\Company;
 
+use ApiPlatform\Doctrine\Orm\Filter\FilterInterface;
+use ApiPlatform\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\QueryParameter;
 use App\Repository\Company\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ApiResource]
+#[QueryParameter(
+    key: 'name', property: 'name'
+)]
 class Client
 {
     #[ORM\Id]

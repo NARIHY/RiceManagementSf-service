@@ -1,4 +1,4 @@
-# Gestion de Stock de Riz - API Laravel
+# Gestion de Stock de Riz - API SYMFONY
 
 ## Introduction
 
