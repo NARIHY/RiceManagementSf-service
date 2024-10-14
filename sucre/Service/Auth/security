@@ -1,0 +1,137 @@
+# README for Integrating Laravel Sanctum in a RESTful Laravel API
+
+## Introduction
+
+This README provides a guide for integrating Laravel Sanctum into a RESTful API built with Laravel. It also addresses a specific issue encountered during user registration related to password hashing.
+
+## Features
+
+- **User Authentication**: Use Laravel Sanctum for API token authentication.
+- **User Registration**: New users can register with hashed passwords.
+- **Password Hashing**: Passwords are hashed with a custom method that uses salting and SHA-256.
+- **Middleware Integration**: Auth middleware is applied to secure API routes.
+- **Test Modifications**: Tests have been updated to include authentication using `auth:sanctum`.
+
+## Installation
+
+1. **Install Sanctum**
+
+   Run the following command to install Sanctum:
+
+   ```bash
+   composer require laravel/sanctum
+   ```
+
+2. **Publish Sanctum Configuration**
+
+   Publish the Sanctum configuration file:
+
+   ```bash
+   php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+   ```
+
+3. **Run Migrations**
+
+   Run the migrations to create the necessary tables:
+
+   ```bash
+   php artisan migrate
+   ```
+
+4. **Add Sanctum Middleware**
+
+   In your `api` middleware group within `app/Http/Kernel.php`, add `\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class`:
+
+   ```php
+   'api' => [
+       \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+       'throttle:api',
+       \Illuminate\Routing\Middleware\SubstituteBindings::class,
+   ],
+   ```
+
+5. **Set Up User Model**
+
+   In your `User` model, ensure you have the `HasApiTokens` trait:
+
+   ```php
+   use Laravel\Sanctum\HasApiTokens;
+
+   class User extends Authenticatable
+   {
+       use HasApiTokens, Notifiable;
+
+       // ...
+   }
+   ```
+
+## Password Hashing Issue
+
+### Problem
+
+During user registration, passwords were being hashed twice. The following method was causing the issue:
+
+```php
+public function setPasswordAttribute($value)
+{
+    $this->attributes['password'] = $this->hashPassword($value);
+}
+```
+
+### Solution
+
+To prevent double hashing, ensure that you only hash the password when it is being set for the first time. Update your `setPasswordAttribute` method as follows:
+
+```php
+public function setPasswordAttribute($value)
+{
+    // Only hash if the value is being set for the first time
+    if (!empty($value) && !isset($this->attributes['password'])) {
+        $this->attributes['password'] = $this->hashPassword($value);
+    }
+}
+```
+
+### Custom Hash Method
+
+Make sure your `hashPassword` method looks like this:
+
+```php
+protected function hashPassword($value)
+{
+    return hash('sha256', $value . config('app.salt'));
+}
+```
+
+Replace `config('app.salt')` with your application's salt value for better security.
+
+## Middleware Integration
+
+To protect your API routes with Sanctum authentication, add the `auth:sanctum` middleware to your routes. Example:
+
+```php
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+```
+
+## Testing
+
+To ensure that the authentication is working correctly, the tests have been modified to include the `auth:sanctum` middleware.
+
+1. **Run Tests**
+
+   Use the following command to run your tests:
+
+   ```bash
+    ./vendor/bin/phpunit
+
+   ```
+
+2. **Create a Test User**
+
+   When creating test users, ensure that their passwords are hashed using the same method defined in your `User` model.
+
+## Conclusion
+
+By following this guide, you should have a working implementation of Laravel Sanctum in your RESTful API, along with secure password handling. For any further issues or enhancements, feel free to contribute or raise issues in the repository.
