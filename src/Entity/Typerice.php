@@ -3,12 +3,13 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
-use App\Repository\GenderManagementRepository;
+use App\Repository\TypericeRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: GenderManagementRepository::class)]
+#[ORM\Entity(repositoryClass: TypericeRepository::class)]
 #[ApiResource]
-class GenderManagement
+class Typerice
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,7 +17,10 @@ class GenderManagement
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $genderName = null;
+    private ?string $riceName = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
@@ -29,14 +33,26 @@ class GenderManagement
         return $this->id;
     }
 
-    public function getGenderName(): ?string
+    public function getRiceName(): ?string
     {
-        return $this->genderName;
+        return $this->riceName;
     }
 
-    public function setGenderName(string $genderName): static
+    public function setRiceName(string $riceName): static
     {
-        $this->genderName = $genderName;
+        $this->riceName = $riceName;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -64,23 +80,4 @@ class GenderManagement
 
         return $this;
     }
-
-      /**
-     * @ORM\PrePersist
-     */
-    public function onPrePersist(): void
-    {
-        $this->createdAt = new \DateTimeImmutable();
-        $this->updatedAt = new \DateTimeImmutable();
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function onPreUpdate(): void
-    {
-        $this->updatedAt = new \DateTimeImmutable();
-    }
-
-    
 }

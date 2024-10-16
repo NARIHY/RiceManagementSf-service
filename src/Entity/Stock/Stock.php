@@ -23,10 +23,11 @@ class Stock
     #[ORM\JoinColumn(nullable: false)]
     private ?Arrival $arrivals = null;
 
-    #[ORM\Column]
+    
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     public function getId(): ?int

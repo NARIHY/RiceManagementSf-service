@@ -25,10 +25,10 @@ class Bag
     #[ORM\OneToMany(targetEntity: Arrival::class, mappedBy: 'bag')]
     private Collection $arrivals;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updateAt = null;
 
     public function __construct()

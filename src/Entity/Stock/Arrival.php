@@ -31,16 +31,12 @@ class Arrival
     #[ORM\Column]
     private ?float $bagPrice = null;
 
-    /**
-     * @var Collection<int, TypeRice>
-     */
-    #[ORM\ManyToMany(targetEntity: TypeRice::class, inversedBy: 'arrivals')]
-    private Collection $typeRice;
 
-    #[ORM\Column]
+
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'arrivals')]
@@ -52,7 +48,7 @@ class Arrival
 
     public function __construct()
     {
-        $this->typeRice = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -108,29 +104,9 @@ class Arrival
         return $this;
     }
 
-    /**
-     * @return Collection<int, TypeRice>
-     */
-    public function getTypeRice(): Collection
-    {
-        return $this->typeRice;
-    }
+    
 
-    public function addTypeRice(TypeRice $typeRice): static
-    {
-        if (!$this->typeRice->contains($typeRice)) {
-            $this->typeRice->add($typeRice);
-        }
-
-        return $this;
-    }
-
-    public function removeTypeRice(TypeRice $typeRice): static
-    {
-        $this->typeRice->removeElement($typeRice);
-
-        return $this;
-    }
+    
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {

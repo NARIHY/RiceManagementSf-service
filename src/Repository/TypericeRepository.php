@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Repository\Stock;
+namespace App\Repository;
 
-use App\Entity\Stock\TypeRice;
+use App\Entity\Typerice;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<TypeRice>
+ * @extends ServiceEntityRepository<Typerice>
  */
-class TypeRiceRepository extends ServiceEntityRepository
+class TypericeRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, TypeRice::class);
+        parent::__construct($registry, Typerice::class);
     }
 
     //    /**
-    //     * @return TypeRice[] Returns an array of TypeRice objects
+    //     * @return Typerice[] Returns an array of Typerice objects
     //     */
     //    public function findByExampleField($value): array
     //    {
@@ -31,7 +31,7 @@ class TypeRiceRepository extends ServiceEntityRepository
     //        ;
     //    }
 
-    //    public function findOneBySomeField($value): ?TypeRice
+    //    public function findOneBySomeField($value): ?Typerice
     //    {
     //        return $this->createQueryBuilder('t')
     //            ->andWhere('t.exampleField = :val')
