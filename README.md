@@ -1,28 +1,28 @@
-# Gestion de Stock de Riz - API SYMFONY
+# Gestion de Stock de Riz - API SYMFONY 7 avec API Platform
 
 ## Introduction
 
-Bienvenue dans le système de gestion de stock de riz. Cette API Laravel permet de gérer efficacement les stocks de riz, les transactions financières, les commandes clients et les informations relatives aux fournisseurs. Ce README fournit une vue d'ensemble des fonctionnalités, des instructions d'installation et des exemples d'utilisation.
+Bienvenue dans le système de gestion de stock de riz. Cette API Symfony 7, construite avec API Platform, permet de gérer efficacement les stocks de riz, les transactions financières, les commandes clients et les informations relatives aux fournisseurs. Ce README fournit une vue d'ensemble des fonctionnalités, des instructions d'installation et des exemples d'utilisation.
 
 ## Fonctionnalités
 
 ### 1. **Gestion des Stocks**
-- **Ajout d'Arrivages :** Permet d'ajouter de nouveaux arrivages de riz avec des informations telles que le type de riz, la qualité, le prix, et la quantité en sacs.
-- **Suivi des Stocks :** Visualisation des stocks disponibles par étiquette, gestion des quantités de sacs et mise à jour après chaque vente.
+- **Ajout d'Arrivages :** Permet d'ajouter de nouveaux arrivages de riz avec des informations telles que le type de riz, la qualité, le prix et la quantité en sacs.
+- **Suivi des Stocks :** Visualisation des stocks disponibles, gestion des quantités de sacs et mise à jour après chaque vente.
 - **Inventaire :** Enregistrement des inventaires réguliers pour vérifier l'état des stocks.
 
 ### 2. **Gestion Financière**
-- **Enregistrement des Transactions :** Suivi des entrées et sorties de fonds, associées aux arrivages et aux clients.
+- **Enregistrement des Transactions :** Suivi des entrées et sorties de fonds associées aux arrivages et aux clients.
 - **Comptes Vendeurs et Clients :** Gestion distincte des transactions pour les vendeurs et les clients.
 - **Facilités de Paiement :** Gestion des options de paiement immédiat ou différé, suivi des créances et des paiements partiels.
 
 ### 3. **Gestion des Commandes Clients**
-- **Passer des Commandes :** Enregistrement des commandes clients avec détails de la commande, modalités de paiement, et informations client.
+- **Passer des Commandes :** Enregistrement des commandes clients avec détails de la commande, modalités de paiement et informations client.
 - **Suivi des Commandes :** Mise à jour du stock après chaque vente, vérification des paiements et des statuts de livraison.
 
 ### 4. **Gestion des Informations**
-- **Archivage des Actions :** Enregistrement des actions importantes comme les achats, les ventes, et les ajustements de stock.
-- **Vue d’Ensemble des Stocks :** Tableau de bord pour visualiser les stocks disponibles, les stocks vendus, et les commandes en cours.
+- **Archivage des Actions :** Enregistrement des actions importantes comme les achats, les ventes et les ajustements de stock.
+- **Vue d’Ensemble des Stocks :** Tableau de bord pour visualiser les stocks disponibles, les stocks vendus et les commandes en cours.
 - **Sécurité des Données :** Sauvegarde régulière des données financières et de gestion des stocks.
 
 ## Installation
@@ -30,16 +30,17 @@ Bienvenue dans le système de gestion de stock de riz. Cette API Laravel permet 
 ### Prérequis
 - PHP 8.x
 - Composer
-- Laravel 11.x
-- MariaDb (Prod)
-- Sqllite (dev)
+- Symfony 7.x
+- API Platform
+- MariaDB (Prod)
+- SQLite (Dev)
 
 ### Étapes d'Installation
 
 1. **Cloner le Repository**
    ```bash
-   git clone https://github.com/NARIHY/RiceManagement-service.git
-   cd RiceManagement-service
+   git clone https://github.com/NARIHY/RiceManagementSf-service.git
+   cd RiceManagementSf-service
    ```
 
 2. **Installer les Dépendances**
@@ -55,17 +56,13 @@ Bienvenue dans le système de gestion de stock de riz. Cette API Laravel permet 
 
 4. **Générer la Clé de l'Application**
    ```bash
-   php artisan key:generate
+   php bin/console doctrine:database:create
+   php bin/console doctrine:migrations:migrate
    ```
 
-5. **Migrer la Base de Données**
+5. **Lancer le Serveur**
    ```bash
-   php artisan migrate
-   ```
-
-6. **Lancer le Serveur**
-   ```bash
-   php artisan serve
+   symfony serve
    ```
 
 ## Utilisation
@@ -151,9 +148,8 @@ Si vous souhaitez contribuer à ce projet, veuillez suivre ces étapes :
 ## Contact
 
 Pour toute question ou support, veuillez contacter :
-- **Nom** : RANDRIANARISOA Mahenina
-- **Email** : maheninarandrianarisoa@gmail.com
-
+- **Nom :** RANDRIANARISOA Mahenina
+- **Email :** maheninarandrianarisoa@gmail.com
 
 ## Licence
 
