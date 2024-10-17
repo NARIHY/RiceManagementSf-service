@@ -3,19 +3,30 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\GenderManagementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: GenderManagementRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new GetCollection(
+            uriTemplate: '/genders',
+            normalizationContext: ['groups' => ['gender:collection:get']]
+        )
+    ]
+)]
 class GenderManagement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('gender:collection:get')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('gender:collection:get')]
     private ?string $genderName = null;
 
     #[ORM\Column(nullable: true)]

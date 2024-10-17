@@ -3,6 +3,7 @@
 namespace Sucre\Service\Human;
 
 use InvalidArgumentException;
+use Sucre\Exception\CINInvalidException;
 
 /**
  * Class CINService
@@ -23,21 +24,32 @@ class CINService
     private string $cin;
     private static array $existingCINs = []; // To store existing CINs for uniqueness check
 
+    private int $code = 200;
+    const MESSAGE = "The CIN must be unique and have exactly 12 digits. (Madagascar CIN rules)";
+
     /**
      * CINService constructor.
      *
      * @param string $cin The CIN to validate and manage.
      *
-     * @throws InvalidArgumentException If the CIN is invalid.
+     * 
      */
     public function __construct(string $cin)
     {
         if (!$this->isValidCIN($cin)) {
-            throw new InvalidArgumentException("The CIN must be unique and have exactly 12 digits.");
+            $this->code = 400;
         }
-
         $this->cin = $cin;
         self::$existingCINs[] = $cin; // Store the new CIN
+    }
+
+    /**
+     * get status code
+     * @return int
+     */
+    public function getCode(): int 
+    {
+        return $this->code;
     }
 
     /**
@@ -93,12 +105,10 @@ class CINService
 
         return [
             'zone' => $details['zone'],
-            'city' => $details['city'] ?? 'N/A',
-            'region_1' => $details['region_1'] ?? 'N/A',
-            'region_2' => $details['region_2'] ?? 'N/A',
-            'region_3' => $details['region_3'] ?? 'N/A',
-            'country' => $details['country'] ?? 'N/A',
-            'postal_code' => $details['postal_code'] ?? 'N/A',
+            'region' => $details['region'] ?? 'N/A',
+            'province' => $details['province'] ?? 'N/A',
+            'country' => 'MADAGASCAR',
+            'postal_code' => $code ?? 'N/A'
         ];
     }
 

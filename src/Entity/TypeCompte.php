@@ -2,10 +2,21 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
 use App\Repository\TypeCompteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: TypeCompteRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get(
+            uriTemplate: '/roles',
+            normalizationContext: ['groups' => ['typeCompte:collection:get']]
+        )
+    ]
+)]
 class TypeCompte
 {
     #[ORM\Id]
@@ -14,6 +25,7 @@ class TypeCompte
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('typeCompte:collection:get')]
     private ?string $role = null;
 
     #[ORM\Column(nullable: true)]

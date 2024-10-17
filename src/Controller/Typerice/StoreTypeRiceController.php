@@ -13,13 +13,5 @@ use Symfony\Component\Routing\Attribute\Route;
 class StoreTypeRiceController extends AbstractController
 {
 
-    // public function __construct(
-    //     private Client $newClient
-    //     ) {
-
-    // }
-
-    // public function __invoke(Client $client) {
-    //     $this->newClient->handle();
-    // }
+   
 }

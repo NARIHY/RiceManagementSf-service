@@ -11,10 +11,9 @@ use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\QueryParameter;
+use App\Controller\Company\Client\GetOneClientController;
 use App\Controller\Company\Client\StoreClientController;
 use App\Controller\Company\Client\UpdateClientController;
-use App\Controller\Typerice\StoreTypeRiceController;
-use App\Controller\Typerice\TypeRiceController;
 use App\Repository\Company\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -22,18 +21,24 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ApiResource(
     description: "Gestion des clients de notre application",
-    normalizationContext: ['group' => ['read:client']],
     operations: [
-        new Get(),
+        new Get(            
+            controller: GetOneClientController::class,
+            normalizationContext: ['group' => ['client:collection:get', 'client:collection:post', 'client:collection:put']],
+        ),
         new Post(
-            denormalizationContext: ['group' => ['writte:client']],
+            normalizationContext: ['group' => ['client:collection:post','client:collection:put']],
+            denormalizationContext: ['group' => ['client:collection:post','client:collection:put']],
             controller: StoreClientController::class,
         ),
         new Put(
-            denormalizationContext: ['group' => ['writte:client']],
+            normalizationContext: ['group' => ['client:collection:put','client:collection:get']],
+            denormalizationContext: ['group' => ['client:collection:put']],
             controller: UpdateClientController::class
         ),
-        new GetCollection(),
+        new GetCollection(
+            normalizationContext: ['group' => ['client:collection:get', 'client:collection:post', 'client:collection:put']],
+        ),
         new Delete()
     ]
 )]
@@ -46,35 +51,33 @@ class Client
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('read:client')]
+    #[Groups('client:collection:get')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('writte:client')]
+    #[Groups('client:collection:post')]
     #[Assert\NotBlank]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('writte:client')]
+    #[Groups('client:collection:post')]
     #[Assert\NotBlank]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('writte:client')]
+    #[Groups('client:collection:post')]
     #[Assert\NotBlank]
     private ?string $cin = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups('writte:client')]
+    #[Groups('client:collection:put')]
     #[Assert\NotBlank]
     private ?string $address = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups('read:client')]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups('read:client')]
     private ?\DateTimeImmutable $updatedAt = null;
 
     
