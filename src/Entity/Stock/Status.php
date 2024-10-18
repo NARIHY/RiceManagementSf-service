@@ -3,21 +3,47 @@
 namespace App\Entity\Stock;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use App\Repository\Stock\StatusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: StatusRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new Get(
+            normalizationContext: ['groups' => ['statuses:collection:get','statuses:collection:post']]
+        ),
+        new GetCollection(
+            normalizationContext: ['groups' => ['statuses:collection:get','statuses:collection:post']]
+        ),
+        new Post(
+            normalizationContext: ['groups' => ['statuses:collection:get','statuses:collection:post']],
+            denormalizationContext: ['groups' => ['statuses:collection:post']]
+        ),
+        new Patch(
+            normalizationContext: ['groups' => ['statuses:collection:get','statuses:collection:post']],
+            denormalizationContext: ['groups' => ['statuses:collection:post']]
+        )
+    ]
+)]
 class Status
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('statuses:collection:get')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
+    #[Groups('statuses:collection:post')]
     private ?string $statusName = null;
 
     #[ORM\Column(nullable: true)]
