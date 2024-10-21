@@ -3,12 +3,19 @@
 namespace App\Entity\Stock;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 use App\Repository\Stock\StockRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StockRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new GetCollection()
+    ]
+)]
 class Stock
 {
     #[ORM\Id]
@@ -19,16 +26,23 @@ class Stock
     #[ORM\Column(type: Types::BIGINT)]
     private ?string $aivalableQuantity = null;
 
-    #[ORM\OneToOne(inversedBy: 'stock', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Arrival $arrivals = null;
-
     
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    /**
+     * @var Collection<int, Bag>
+     */
+    #[ORM\ManyToMany(targetEntity: Bag::class, mappedBy: 'stock')]
+    private Collection $bags;
+
+    public function __construct()
+    {
+        $this->bags = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -47,17 +61,7 @@ class Stock
         return $this;
     }
 
-    public function getArrivals(): ?Arrival
-    {
-        return $this->arrivals;
-    }
-
-    public function setArrivals(Arrival $arrivals): static
-    {
-        $this->arrivals = $arrivals;
-
-        return $this;
-    }
+   
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
@@ -79,6 +83,33 @@ class Stock
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Bag>
+     */
+    public function getBag(): Collection
+    {
+        return $this->bags;
+    }
+
+    public function addBag(Bag $bags): static
+    {
+        if (!$this->bags->contains($bags)) {
+            $this->bags->add($bags);
+            $bags->addStock($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBag(Bag $bags): static
+    {
+        if ($this->bags->removeElement($bags)) {
+            $bags->removeStock($this);
+        }
 
         return $this;
     }

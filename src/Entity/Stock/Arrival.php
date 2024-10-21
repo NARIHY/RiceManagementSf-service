@@ -3,32 +3,58 @@
 namespace App\Entity\Stock;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
+use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
+use ApiPlatform\Metadata\Post;
 use App\Repository\Stock\ArrivalRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ArrivalRepository::class)]
-#[ApiResource]
+#[ApiResource(
+    operations: [
+        new Get(
+            normalizationContext: ['Groups' => ['arrival:collection:get','arrival:collection:post', 'bag:collection:get', 'bag:collection:post','statuses:collection:get','statuses:collection:post']],
+            denormalizationContext: ['Groups' => ['arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statusArrival:collection:post']]
+        ),
+        new GetCollection(
+            normalizationContext: ['Groups' => ['arrival:collection:get','arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statuses:collection:get','statuses:collection:post']]
+        ), 
+        new Patch(
+            normalizationContext: ['Groups' => ['arrival:collection:get','arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statuses:collection:get','statuses:collection:post']],
+            denormalizationContext: ['Groups' => ['arrival:collection:post', 'bag:collection:get', 'bag:collection:post','statusArrival:collection:post']]
+        ),
+        new Post(
+            normalizationContext: ['Groups' => ['arrival:collection:get','arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statuses:collection:get','statuses:collection:post']],
+            denormalizationContext: ['Groups' => ['arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statusArrival:collection:post']]
+        )
+    ]
+)]
 class Arrival
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('arrival:collection:get')]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
     private ?string $labelName = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups('arrival:collection:post')]
     private ?\DateTimeInterface $arrivalDate = null;
 
     #[ORM\ManyToOne(inversedBy: 'arrivals')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups('statusArrival:collection:post')]
     private ?Status $status = null;
 
     #[ORM\Column]
+    #[Groups('arrival:collection:post')]
     private ?float $bagPrice = null;
 
 
@@ -43,13 +69,8 @@ class Arrival
     #[ORM\JoinColumn(nullable: false)]
     private ?Bag $bag = null;
 
-    #[ORM\OneToOne(mappedBy: 'arrivals', cascade: ['persist', 'remove'])]
-    private ?Stock $stock = null;
+    
 
-    public function __construct()
-    {
-        
-    }
 
     public function getId(): ?int
     {
@@ -131,18 +152,14 @@ class Arrival
 
         return $this;
     }
-    /**
-     * @ORM\PrePersist
-     */
+    #[ORM\PrePersist]
     public function onPrePersist(): void
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
     }
 
-    /**
-     * @ORM\PreUpdate
-     */
+    #[ORM\PreUpdate]
     public function onPreUpdate(): void
     {
         $this->updatedAt = new \DateTimeImmutable();
@@ -160,20 +177,7 @@ class Arrival
         return $this;
     }
 
-    public function getStock(): ?Stock
-    {
-        return $this->stock;
-    }
+   
 
-    public function setStock(Stock $stock): static
-    {
-        // set the owning side of the relation if necessary
-        if ($stock->getArrivals() !== $this) {
-            $stock->setArrivals($this);
-        }
-
-        $this->stock = $stock;
-
-        return $this;
-    }
+    
 }
