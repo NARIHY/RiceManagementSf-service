@@ -1,156 +1,21 @@
-# Gestion de Stock de Riz - API SYMFONY 7 avec API Platform
+# Objectifs
 
-## Introduction
+## Création d'un Microservice
 
-Bienvenue dans le système de gestion de stock de riz. Cette API Symfony 7, construite avec API Platform, permet de gérer efficacement les stocks de riz, les transactions financières, les commandes clients et les informations relatives aux fournisseurs. Ce README fournit une vue d'ensemble des fonctionnalités, des instructions d'installation et des exemples d'utilisation.
+L'objectif principal de ce projet est de développer un microservice dédié à la gestion de stock de riz. 
 
-## Fonctionnalités
+### Qu'est-ce qu'un Microservice ?
+Un microservice est une architecture logicielle qui structure une application en ensembles de services indépendants et autonomes. Chaque microservice est conçu pour exécuter une fonction spécifique et peut être développé, déployé et mis à l'échelle de manière indépendante.
 
-### 1. **Gestion des Stocks**
-- **Ajout d'Arrivages :** Permet d'ajouter de nouveaux arrivages de riz avec des informations telles que le type de riz, la qualité, le prix et la quantité en sacs.
-- **Suivi des Stocks :** Visualisation des stocks disponibles, gestion des quantités de sacs et mise à jour après chaque vente.
-- **Inventaire :** Enregistrement des inventaires réguliers pour vérifier l'état des stocks.
+### Avantages de l'Architecture Microservices
 
-### 2. **Gestion Financière**
-- **Enregistrement des Transactions :** Suivi des entrées et sorties de fonds associées aux arrivages et aux clients.
-- **Comptes Vendeurs et Clients :** Gestion distincte des transactions pour les vendeurs et les clients.
-- **Facilités de Paiement :** Gestion des options de paiement immédiat ou différé, suivi des créances et des paiements partiels.
+- **Indépendance :** Chaque service peut être développé et mis à jour sans affecter les autres. Cela permet une flexibilité accrue et un cycle de développement plus rapide.
+  
+- **Scalabilité :** Les microservices peuvent être mis à l'échelle indépendamment en fonction des besoins. Par exemple, si la demande pour la gestion des stocks augmente, il est possible de déployer plus d'instances de ce service sans toucher aux autres.
+  
+- **Résilience :** Si un microservice échoue, cela n'affecte pas nécessairement l'ensemble de l'application. D'autres services peuvent continuer à fonctionner, ce qui améliore la fiabilité globale.
+  
+- **Technologies Variées :** Chaque microservice peut être construit avec des technologies et des langages différents, permettant aux équipes de choisir les outils les plus adaptés à chaque fonction.
 
-### 3. **Gestion des Commandes Clients**
-- **Passer des Commandes :** Enregistrement des commandes clients avec détails de la commande, modalités de paiement et informations client.
-- **Suivi des Commandes :** Mise à jour du stock après chaque vente, vérification des paiements et des statuts de livraison.
-
-### 4. **Gestion des Informations**
-- **Archivage des Actions :** Enregistrement des actions importantes comme les achats, les ventes et les ajustements de stock.
-- **Vue d’Ensemble des Stocks :** Tableau de bord pour visualiser les stocks disponibles, les stocks vendus et les commandes en cours.
-- **Sécurité des Données :** Sauvegarde régulière des données financières et de gestion des stocks.
-
-## Installation
-
-### Prérequis
-- PHP 8.x
-- Composer
-- Symfony 7.x
-- API Platform
-- MariaDB (Prod)
-- SQLite (Dev)
-
-### Étapes d'Installation
-
-1. **Cloner le Repository**
-   ```bash
-   git clone https://github.com/NARIHY/RiceManagementSf-service.git
-   cd RiceManagementSf-service
-   ```
-
-2. **Installer les Dépendances**
-   ```bash
-   composer install
-   ```
-
-3. **Configurer l'Environnement**
-   Renommez le fichier `.env.example` en `.env` et configurez les variables d'environnement pour la base de données et les autres paramètres :
-   ```bash
-   cp .env.example .env
-   ```
-
-4. **Générer la Clé de l'Application**
-   ```bash
-   php bin/console doctrine:database:create
-   php bin/console doctrine:migrations:migrate
-   ```
-
-5. **Lancer le Serveur**
-   ```bash
-   symfony serve
-   ```
-
-## Utilisation
-
-### API Endpoints
-
-- **Ajouter un Arrivage**
-  - **URL:** `POST /api/arrivages`
-  - **Body:**
-    ```json
-    {
-      "type": "Basmati",
-      "qualite": "Premium",
-      "prix": 50.00,
-      "quantite_sacs": 100
-    }
-    ```
-
-- **Consulter les Stocks**
-  - **URL:** `GET /api/stocks`
-  - **Response:**
-    ```json
-    {
-      "type": "Basmati",
-      "qualite": "Premium",
-      "quantite_disponible": 90
-    }
-    ```
-
-- **Passer une Commande**
-  - **URL:** `POST /api/commandes`
-  - **Body:**
-    ```json
-    {
-      "client_id": 1,
-      "type_riz": "Basmati",
-      "quantite_sacs": 10,
-      "mode_paiement": "immédiat"
-    }
-    ```
-
-- **Consulter les Commandes**
-  - **URL:** `GET /api/commandes`
-  - **Response:**
-    ```json
-    {
-      "id": 1,
-      "client_id": 1,
-      "type_riz": "Basmati",
-      "quantite_sacs": 10,
-      "status": "livrée"
-    }
-    ```
-
-- **Enregistrer une Transaction**
-  - **URL:** `POST /api/transactions`
-  - **Body:**
-    ```json
-    {
-      "type": "entrée",
-      "montant": 500.00,
-      "description": "Achat de riz"
-    }
-    ```
-
-### Exemple d'Authentification
-
-Pour accéder aux endpoints protégés, utilisez le token d'authentification Bearer dans les en-têtes de requête.
-
-```bash
-curl -H "Authorization: Bearer YOUR_TOKEN" http://localhost:8000/api/stocks
-```
-
-## Contribution
-
-Si vous souhaitez contribuer à ce projet, veuillez suivre ces étapes :
-1. Fork le repository.
-2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonctionnalité`).
-3. Faites vos modifications et committez (`git commit -am 'Ajoute nouvelle fonctionnalité'`).
-4. Poussez vos changements (`git push origin feature/nouvelle-fonctionnalité`).
-5. Créez une pull request.
-
-## Contact
-
-Pour toute question ou support, veuillez contacter :
-- **Nom :** RANDRIANARISOA Mahenina
-- **Email :** maheninarandrianarisoa@gmail.com
-
-## Licence
-
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+### Conclusion
+En créant ce microservice, nous visons à offrir une solution robuste et adaptable pour la gestion des stocks de riz, tout en facilitant les futurs développements et intégrations dans un environnement moderne. L'architecture microservices permet de répondre rapidement aux besoins changeants des utilisateurs et d'améliorer la qualité du service global.
