@@ -4,6 +4,9 @@ controllers:
         namespace: App\Controller
         api_login_check:
             path: /api/login
+        api_refresh_token:
+            path: /api/token/refresh
+            controller: gesdinet.jwtrefreshtoken::refresh
     type: attribute
     
     

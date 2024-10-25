@@ -1,7 +1,20 @@
 api_platform:
     title: Rice Management Service
-    version: 1.0.0
+    description: 'Rice Management Service (RMS) est une organisation dédiée à la gestion et à l ''optimisation de la production de riz. Elle propose des solutions durables pour améliorer les rendements, former les agriculteurs aux meilleures pratiques et gérer efficacement la chaîne d''approvisionnement. RMS s''engage à promouvoir des méthodes respectueuses de l''environnement tout en soutenant les communautés locales, garantissant ainsi une production de riz à la fois rentable et durable.'
+    
+    version: 0.0.1
     defaults:
         stateless: true
         cache_headers:
+            etag: true
+            max_age: 3600
+            shared_max_age: 3600
             vary: ['Content-Type', 'Authorization', 'Origin']
+            
+    swagger:
+        api_keys:
+            JWT:
+                name: Authorization
+                type: header
+    
+        

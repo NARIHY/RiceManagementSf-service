@@ -32,7 +32,7 @@ class StoreBagController
         $bag->addStock($stock);
         $this->entityManager->persist($bag);
         $this->entityManager->flush();
-        return new JsonResponse([$bag], Response::HTTP_CREATED);
+        return new JsonResponse(['message' => 'bag added succefully'], Response::HTTP_CREATED);
     }
 
     private function createStockForBag(Bag $bag): Stock

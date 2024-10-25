@@ -10,10 +10,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: GenderManagementRepository::class)]
 #[ApiResource(
+    normalizationContext: ['groups' => ['gender:collection:get']],
     operations: [
         new GetCollection(
             uriTemplate: '/genders',
-            normalizationContext: ['groups' => ['gender:collection:get']]
+            
         )
     ]
 )]

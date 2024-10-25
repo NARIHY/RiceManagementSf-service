@@ -2,6 +2,7 @@
 
 namespace App\Entity\Stock;
 
+use ApiPlatform\Metadata\ApiProperty;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
@@ -20,7 +21,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: [
         new Get(
             normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post','stock:bag:collection']],
-            denormalizationContext: ['groups' => ['bag:collection:post', 'bag:arrival:collection','stock:bag:collection']]
+            denormalizationContext: ['groups' => ['bag:collection:post', 'bag:arrival:collection','stock:bag:collection']],
+            
         ),
         new GetCollection(
             normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post','stock:bag:collection']],
@@ -35,7 +37,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
             normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post']],
             denormalizationContext: ['groups' => ['bag:collection:post', 'bag:arrival:collection']]
         )
-    ]
+        ]
+
 )
     
 ]
