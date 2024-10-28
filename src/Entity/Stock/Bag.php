@@ -20,12 +20,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(
-            normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post','stock:bag:collection']],
+            normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post','stock:bag:collection','stock:collection:read','stock:collection:writte']],
             denormalizationContext: ['groups' => ['bag:collection:post', 'bag:arrival:collection','stock:bag:collection']],
             
         ),
         new GetCollection(
-            normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post','stock:bag:collection']],
+            normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post','stock:bag:collection','stock:collection:read','stock:collection:writte']],
             denormalizationContext: ['groups' => ['bag:collection:post', 'bag:arrival:collection','stock:bag:collection']]
         ),
         new Post(
@@ -150,6 +150,8 @@ class Bag
 
         return $this;
     }
+
+    
 
     #[ORM\PrePersist]
     public function onPrePersist(): void

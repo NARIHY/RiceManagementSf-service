@@ -49,7 +49,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/api/(login|token/refresh|register), roles: PUBLIC_ACCESS }
+        - { path: ^/api/(login|token/refresh|register|genders), roles: PUBLIC_ACCESS }
         - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }        
         - { path: ^/api/clients/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }

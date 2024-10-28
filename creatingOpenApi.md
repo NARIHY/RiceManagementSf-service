@@ -1,0 +1,1 @@
+php bin/console api:openapi:export --output=openapi.json

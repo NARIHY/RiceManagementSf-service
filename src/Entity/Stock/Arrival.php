@@ -10,27 +10,21 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use App\Repository\Stock\ArrivalRepository;
 
-use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: ArrivalRepository::class)]
 #[ApiResource(
+    normalizationContext: ['groups' => ['arrival:collection:get', 'arrival:collection:post', 'statuses:collection:get','statuses:collection:post','bag:collection:get','bag:collection:post']],
     operations: [
-        new Get(
-            normalizationContext: ['Groups' => ['arrival:collection:get','arrival:collection:post', 'bag:collection:get', 'bag:collection:post','statuses:collection:get','statuses:collection:post']],
-            denormalizationContext: ['Groups' => ['arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statusArrival:collection:post']]
-        ),
-        new GetCollection(
-            normalizationContext: ['Groups' => ['arrival:collection:get','arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statuses:collection:get','statuses:collection:post']]
-        ), 
+        new Get(),
+        new GetCollection(), 
         new Patch(
-            normalizationContext: ['Groups' => ['arrival:collection:get','arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statuses:collection:get','statuses:collection:post']],
-            denormalizationContext: ['Groups' => ['arrival:collection:post', 'bag:collection:get', 'bag:collection:post','statusArrival:collection:post']]
+            denormalizationContext: ['groups' => ['arrival:collection:post', 'status:collection:post']]
         ),
         new Post(
-            normalizationContext: ['Groups' => ['arrival:collection:get','arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statuses:collection:get','statuses:collection:post']],
-            denormalizationContext: ['Groups' => ['arrival:collection:post', 'bag:collection:get', 'bag:collection:post', 'statusArrival:collection:post']]
+            denormalizationContext: ['groups' => ['arrival:collection:post', 'status:collection:post']]
         )
     ]
 )]
@@ -43,6 +37,7 @@ class Arrival
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups('arrival:collection:post')]
     private ?string $labelName = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -51,7 +46,7 @@ class Arrival
 
     #[ORM\ManyToOne(inversedBy: 'arrivals')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups('statusArrival:collection:post')]
+    #[Groups('status:collection:post')]
     private ?Status $status = null;
 
     #[ORM\Column]
@@ -61,6 +56,7 @@ class Arrival
 
 
     #[ORM\Column(nullable: true)]
+    #[Groups('arrival:collection:get')]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
@@ -68,6 +64,7 @@ class Arrival
 
     #[ORM\ManyToOne(inversedBy: 'arrivals')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups('arrival:collection:post')]
     private ?Bag $bag = null;
 
     

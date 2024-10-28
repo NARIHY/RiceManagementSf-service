@@ -30,6 +30,7 @@ class StoreBagController
         $bag->setQuantity($data['quantity']);
         $stock = $this->createStockForBag($bag);
         $bag->addStock($stock);
+        
         $this->entityManager->persist($bag);
         $this->entityManager->flush();
         return new JsonResponse(['message' => 'bag added succefully'], Response::HTTP_CREATED);
