@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Put;
+use App\Controller\User\GetUserConnected;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -25,6 +26,10 @@ use Symfony\Component\Validator\Constraints as Assert;
             ),
             new Put(
                 denormalizationContext: ['groups' => ['writte:User']]
+            ),
+            new GetCollection(
+                uriTemplate: '/me',
+                controller: GetUserConnected::class
             )
             ],
             normalizationContext: ['groups' => ['read:User']]

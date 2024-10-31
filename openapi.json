@@ -677,7 +677,7 @@
                                         "member": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/Client.jsonld"
+                                                "$ref": "#/components/schemas/Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                             }
                                         },
                                         "totalItems": {
@@ -767,7 +767,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Client"
+                                        "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                     }
                                 }
                             },
@@ -775,7 +775,7 @@
                                 "schema": {
                                     "type": "array",
                                     "items": {
-                                        "$ref": "#/components/schemas/Client"
+                                        "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                     }
                                 }
                             }
@@ -828,17 +828,17 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client.jsonld"
+                                    "$ref": "#/components/schemas/Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client"
+                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                 }
                             },
                             "text/html": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client"
+                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                 }
                             }
                         },
@@ -874,17 +874,17 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Client.jsonld"
+                                "$ref": "#/components/schemas/Client.jsonld-client.collection.post_client.collection.put"
                             }
                         },
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Client"
+                                "$ref": "#/components/schemas/Client-client.collection.post_client.collection.put"
                             }
                         },
                         "text/html": {
                             "schema": {
-                                "$ref": "#/components/schemas/Client"
+                                "$ref": "#/components/schemas/Client-client.collection.post_client.collection.put"
                             }
                         }
                     },
@@ -905,17 +905,17 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client.jsonld"
+                                    "$ref": "#/components/schemas/Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client"
+                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                 }
                             },
                             "text/html": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client"
+                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                 }
                             }
                         }
@@ -969,17 +969,17 @@
                         "content": {
                             "application/ld+json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client.jsonld"
+                                    "$ref": "#/components/schemas/Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                 }
                             },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client"
+                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                 }
                             },
                             "text/html": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client"
+                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
                                 }
                             }
                         },
@@ -1032,17 +1032,17 @@
                     "content": {
                         "application/ld+json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Client.jsonld"
+                                "$ref": "#/components/schemas/Client.jsonld-client.collection.put"
                             }
                         },
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Client"
+                                "$ref": "#/components/schemas/Client-client.collection.put"
                             }
                         },
                         "text/html": {
                             "schema": {
-                                "$ref": "#/components/schemas/Client"
+                                "$ref": "#/components/schemas/Client-client.collection.put"
                             }
                         }
                     },
@@ -2422,6 +2422,150 @@
                 "deprecated": false
             }
         },
+        "/api/me": {
+            "get": {
+                "operationId": "api_me_get_collection",
+                "tags": [
+                    "User"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User collection",
+                        "content": {
+                            "application/ld+json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "member": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/User.jsonld-read.User"
+                                            }
+                                        },
+                                        "totalItems": {
+                                            "type": "integer",
+                                            "minimum": 0
+                                        },
+                                        "view": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@id": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "first": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "last": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "previous": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                },
+                                                "next": {
+                                                    "type": "string",
+                                                    "format": "iri-reference"
+                                                }
+                                            },
+                                            "example": {
+                                                "@id": "string",
+                                                "type": "string",
+                                                "first": "string",
+                                                "last": "string",
+                                                "previous": "string",
+                                                "next": "string"
+                                            }
+                                        },
+                                        "search": {
+                                            "type": "object",
+                                            "properties": {
+                                                "@type": {
+                                                    "type": "string"
+                                                },
+                                                "template": {
+                                                    "type": "string"
+                                                },
+                                                "variableRepresentation": {
+                                                    "type": "string"
+                                                },
+                                                "mapping": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "@type": {
+                                                                "type": "string"
+                                                            },
+                                                            "variable": {
+                                                                "type": "string"
+                                                            },
+                                                            "property": {
+                                                                "type": [
+                                                                    "string",
+                                                                    "null"
+                                                                ]
+                                                            },
+                                                            "required": {
+                                                                "type": "boolean"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "required": [
+                                        "member"
+                                    ]
+                                }
+                            },
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User-read.User"
+                                    }
+                                }
+                            },
+                            "text/html": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/User-read.User"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of User resources.",
+                "description": "Retrieves the collection of User resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "allowEmptyValue": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": false,
+                        "allowReserved": false
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/users": {
             "get": {
                 "operationId": "api_users_get_collection",
@@ -3089,7 +3233,7 @@
                     }
                 }
             },
-            "Client": {
+            "Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get": {
                 "type": "object",
                 "description": "Gestion des clients de notre application",
                 "deprecated": false,
@@ -3110,19 +3254,15 @@
                     "address": {
                         "type": "string"
                     },
-                    "createdAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
+                    "gender": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/GenderManagement-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     }
                 },
                 "required": [
@@ -3132,7 +3272,53 @@
                     "address"
                 ]
             },
-            "Client.jsonld": {
+            "Client-client.collection.post_client.collection.put": {
+                "type": "object",
+                "description": "Gestion des clients de notre application",
+                "deprecated": false,
+                "required": [
+                    "name",
+                    "lastName",
+                    "cin",
+                    "address"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "cin": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "gender": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    }
+                }
+            },
+            "Client-client.collection.put": {
+                "type": "object",
+                "description": "Gestion des clients de notre application",
+                "deprecated": false,
+                "required": [
+                    "address"
+                ],
+                "properties": {
+                    "address": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get": {
                 "type": "object",
                 "description": "Gestion des clients de notre application",
                 "deprecated": false,
@@ -3188,19 +3374,15 @@
                     "address": {
                         "type": "string"
                     },
-                    "createdAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
+                    "gender": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/GenderManagement.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
                     }
                 },
                 "required": [
@@ -3210,11 +3392,120 @@
                     "address"
                 ]
             },
+            "Client.jsonld-client.collection.post_client.collection.put": {
+                "type": "object",
+                "description": "Gestion des clients de notre application",
+                "deprecated": false,
+                "required": [
+                    "name",
+                    "lastName",
+                    "cin",
+                    "address"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "cin": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "gender": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    }
+                }
+            },
+            "Client.jsonld-client.collection.put": {
+                "type": "object",
+                "description": "Gestion des clients de notre application",
+                "deprecated": false,
+                "required": [
+                    "address"
+                ],
+                "properties": {
+                    "address": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GenderManagement-client.collection.get_client.collection.post_client.collection.put_gender.collection.get": {
+                "type": "object",
+                "description": "",
+                "deprecated": false,
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "genderName": {
+                        "type": "string"
+                    }
+                }
+            },
             "GenderManagement-gender.collection.get": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
                 "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "genderName": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GenderManagement.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get": {
+                "type": "object",
+                "description": "",
+                "deprecated": false,
+                "properties": {
+                    "@context": {
+                        "readOnly": true,
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "object",
+                                "properties": {
+                                    "@vocab": {
+                                        "type": "string"
+                                    },
+                                    "hydra": {
+                                        "type": "string",
+                                        "enum": [
+                                            "http://www.w3.org/ns/hydra/core#"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "@vocab",
+                                    "hydra"
+                                ],
+                                "additionalProperties": true
+                            }
+                        ]
+                    },
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
                     "id": {
                         "readOnly": true,
                         "type": "integer"
@@ -3883,6 +4174,14 @@
                 "description": "",
                 "deprecated": false,
                 "properties": {
+                    "@id": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
+                    "@type": {
+                        "readOnly": true,
+                        "type": "string"
+                    },
                     "@context": {
                         "readOnly": true,
                         "oneOf": [
@@ -3909,14 +4208,6 @@
                                 "additionalProperties": true
                             }
                         ]
-                    },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
                     },
                     "email": {
                         "type": "string"

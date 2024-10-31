@@ -14,6 +14,7 @@ use ApiPlatform\Metadata\QueryParameter;
 use App\Controller\Company\Client\GetOneClientController;
 use App\Controller\Company\Client\StoreClientController;
 use App\Controller\Company\Client\UpdateClientController;
+use App\Entity\GenderManagement;
 use App\Repository\Company\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -21,26 +22,25 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ApiResource(
     description: "Gestion des clients de notre application",
+    normalizationContext:['groups' => ['client:collection:get', 'client:collection:post', 'client:collection:put','gender:collection:get']],
     operations: [
         new Get(            
             controller: GetOneClientController::class,
-            normalizationContext: ['group' => ['client:collection:get', 'client:collection:post', 'client:collection:put']],
         ),
         new Post(
-            normalizationContext: ['group' => ['client:collection:post','client:collection:put']],
-            denormalizationContext: ['group' => ['client:collection:post','client:collection:put']],
+            denormalizationContext: ['groups' => ['client:collection:post','client:collection:put']],
             controller: StoreClientController::class,
         ),
         new Put(
-            normalizationContext: ['group' => ['client:collection:put','client:collection:get']],
-            denormalizationContext: ['group' => ['client:collection:put']],
+            denormalizationContext: ['groups' => ['client:collection:put']],
             controller: UpdateClientController::class
         ),
         new GetCollection(
-            normalizationContext: ['group' => ['client:collection:get', 'client:collection:post', 'client:collection:put']],
+            normalizationContext: ['groups' => ['client:collection:get', 'client:collection:post', 'client:collection:put','gender:collection:get']],
         ),
         new Delete()
-    ]
+    ],
+   
 )]
 
 #[QueryParameter(
@@ -79,6 +79,10 @@ class Client
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'clients')]
+    #[Groups('client:collection:post')]
+    private ?GenderManagement $gender = null;
 
     
     public function getId(): ?int
@@ -170,5 +174,17 @@ class Client
     public function onPreUpdate(): void
     {
         $this->updatedAt = new \DateTimeImmutable();
+    }
+
+    public function getGender(): ?GenderManagement
+    {
+        return $this->gender;
+    }
+
+    public function setGender(?GenderManagement $gender): static
+    {
+        $this->gender = $gender;
+
+        return $this;
     }
 }

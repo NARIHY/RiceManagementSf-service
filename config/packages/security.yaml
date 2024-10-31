@@ -51,7 +51,7 @@ security:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/api/(login|token/refresh|register|genders), roles: PUBLIC_ACCESS }
         - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }        
-        - { path: ^/api/clients/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        # - { path: ^/api/clients/, roles: ROLE_ADMIN }
         - { path: ^/api/, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/profile, roles: ROLE_USER }
 

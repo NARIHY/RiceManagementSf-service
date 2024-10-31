@@ -33,6 +33,10 @@ class GetOneClientController
             'cin' => $client->getCin(),
             'address' => $client->getAddress(),
             'cin_provenance' => $cin_client->checkLocation(),
+            'gender' => [
+                'id' => $client->getGender()->getId(),
+                'genderName' => $client->getGender()->getGenderName()
+            ],
             'createdAt' => $client->getCreatedAt(),
             'updatedAt' => $client->getUpdatedAt()
         ], Response::HTTP_OK);

@@ -3,6 +3,7 @@
 namespace App\Controller\Company\Client;
 
 use App\Entity\Company\Client;
+use App\Entity\GenderManagement;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Sucre\Service\Human\CINService;
@@ -62,6 +63,11 @@ class StoreClientController
         // Decode the incoming JSON payload from the request
         $data = json_decode($request->getContent(), true);
 
+        // Validate the incoming data
+        if (!isset($data['cin'], $data['name'], $data['lastName'], $data['address'], $data['gender'])) {
+            return new JsonResponse(['errors' => 'Missing required fields.'], Response::HTTP_BAD_REQUEST);
+        }
+
         // Validate the CIN (Client Identification Number)
         $validated = $this->validateCin($data['cin']);
         if ($validated->getCode() !== 200) {
@@ -75,8 +81,19 @@ class StoreClientController
         $client->setLastName($data['lastName']);
         $client->setCin($data['cin']);
         $client->setAddress($data['address']);
-        $client->setCreatedAt($this->date_now());
-        $client->setUpdatedAt($this->date_now());
+
+        // Retrieve the Gender entity by ID
+        $genderId = (int) filter_var($data['gender'], FILTER_SANITIZE_NUMBER_INT);
+        $gender = $this->em->getRepository(GenderManagement::class)->find($genderId);
+        if (!$gender) {
+            return new JsonResponse(['errors' => 'Gender not found.'], Response::HTTP_BAD_REQUEST);
+        }
+        $client->setGender($gender);
+
+        // Set timestamps
+        $now = $this->date_now();
+        $client->setCreatedAt($now);
+        $client->setUpdatedAt($now);
 
         // Validate the client entity (e.g., check for required fields and constraints)
         $errors = $this->validator->validate($client);
@@ -95,9 +112,14 @@ class StoreClientController
             'name' => $client->getName(),
             'lastName' => $client->getLastName(),
             'address' => $client->getAddress(),
-            'cin' => $client->getCin()
+            'cin' => $client->getCin(),
+            'gender' => [
+                'id' => $gender->getId(),
+                'genderName' => $gender->getGenderName(),
+            ]
         ], Response::HTTP_CREATED);
     }
+
 
     /**
      * Get the current date and time as a DateTimeImmutable object.
