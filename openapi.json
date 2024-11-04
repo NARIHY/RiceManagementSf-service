@@ -3263,6 +3263,14 @@
                                 "type": "null"
                             }
                         ]
+                    },
+                    "user": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
                     }
                 },
                 "required": [
@@ -3296,6 +3304,14 @@
                         "type": "string"
                     },
                     "gender": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "user": {
                         "type": [
                             "string",
                             "null"
@@ -3383,6 +3399,14 @@
                                 "type": "null"
                             }
                         ]
+                    },
+                    "user": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
                     }
                 },
                 "required": [
@@ -3416,6 +3440,14 @@
                         "type": "string"
                     },
                     "gender": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "user": {
                         "type": [
                             "string",
                             "null"

@@ -15,6 +15,7 @@ use App\Controller\Company\Client\GetOneClientController;
 use App\Controller\Company\Client\StoreClientController;
 use App\Controller\Company\Client\UpdateClientController;
 use App\Entity\GenderManagement;
+use App\Entity\User;
 use App\Repository\Company\ClientRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -83,6 +84,10 @@ class Client
     #[ORM\ManyToOne(inversedBy: 'clients')]
     #[Groups('client:collection:post')]
     private ?GenderManagement $gender = null;
+
+    #[ORM\OneToOne(inversedBy: 'client', cascade: ['persist', 'remove'])]
+    #[Groups('client:collection:post')]
+    private ?User $user = null;
 
     
     public function getId(): ?int
@@ -184,6 +189,18 @@ class Client
     public function setGender(?GenderManagement $gender): static
     {
         $this->gender = $gender;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
