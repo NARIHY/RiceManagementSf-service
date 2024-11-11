@@ -82,7 +82,7 @@ class Client
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'clients')]
-    #[Groups('client:collection:post')]
+    #[Groups('client:collection:get')]
     private ?GenderManagement $gender = null;
 
     #[ORM\OneToOne(inversedBy: 'client', cascade: ['persist', 'remove'])]

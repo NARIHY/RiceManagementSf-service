@@ -4,13 +4,18 @@ namespace App\Controller\Company\Client;
 
 use App\Entity\Company\Client;
 use App\Entity\GenderManagement;
+use App\Entity\User;
+use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Sucre\Service\Human\CINService;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+
 use Symfony\Component\HttpKernel\Attribute\AsController;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -28,6 +33,7 @@ class StoreClientController
      * @var EntityManagerInterface
      */
     private EntityManagerInterface $em;
+    private Security $security;
 
     /**
      * The ValidatorInterface is used to validate the client entity.
@@ -42,10 +48,11 @@ class StoreClientController
      * @param EntityManagerInterface $entityManager The entity manager for database interaction.
      * @param ValidatorInterface $validator The validator for validating entities.
      */
-    public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator)
+    public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator, Security $security)
     {
         $this->em = $entityManager;
         $this->validator = $validator;
+        $this->security = $security;
     }
 
     /**
@@ -71,7 +78,6 @@ class StoreClientController
         // Validate the CIN (Client Identification Number)
         $validated = $this->validateCin($data['cin']);
         if ($validated->getCode() !== 200) {
-            // If CIN validation fails, return a 400 Bad Request response with error message
             return new JsonResponse(['errors' => $validated::MESSAGE], Response::HTTP_BAD_REQUEST);
         }
 
@@ -90,23 +96,45 @@ class StoreClientController
         }
         $client->setGender($gender);
 
+        // Retrieve the current logged-in user
+        // Retrieve the current logged-in user
+        $user = $this->security->getUser();  // Get the currently authenticated user
+        if (!$user) {
+            return new JsonResponse(['errors' => 'User is not authenticated.'], Response::HTTP_UNAUTHORIZED);
+        }
+
+        // Optionally, if you want to find the user by their userIdentifier
+        $userIdentifier = $user->getUserIdentifier();  // This is typically the username or email
+        $userRepository = $this->em->getRepository(User::class);  // Assuming UserInterface is your user entity
+        $userFromDb = $userRepository->findOneBy(['email' => $userIdentifier]);  // Or 'username' depending on your authentication system
+
+        // Check if the user exists in the database
+        if (!$userFromDb) {
+            return new JsonResponse(['errors' => 'User not found in database.'], Response::HTTP_BAD_REQUEST);
+        }
+
+        // Associate the current user (retrieved from database) with the client
+        $client->setUser($userFromDb);
+
+        // Associate the current user with the client
+        $client->setUser($user);
+
         // Set timestamps
         $now = $this->date_now();
         $client->setCreatedAt($now);
         $client->setUpdatedAt($now);
 
-        // Validate the client entity (e.g., check for required fields and constraints)
+        // Validate the client entity
         $errors = $this->validator->validate($client);
         if (count($errors) > 0) {
-            // If there are validation errors, return a 400 Bad Request response
             return new JsonResponse(['errors' => (string) $errors], Response::HTTP_BAD_REQUEST);
         }
 
-        // Persist the client entity to the database and flush the changes
+        // Persist the client entity to the database
         $this->em->persist($client);
         $this->em->flush();
 
-        // Return a JSON response with the newly created client's details and a 201 Created status
+        // Return a JSON response with the newly created client's details
         return new JsonResponse([
             'id' => $client->getId(),
             'name' => $client->getName(),
@@ -116,6 +144,10 @@ class StoreClientController
             'gender' => [
                 'id' => $gender->getId(),
                 'genderName' => $gender->getGenderName(),
+            ],
+            'user' => [
+                'id' => $client->getUser()->getId(),
+                'username' => $client->getUser()->getEmail()
             ]
         ], Response::HTTP_CREATED);
     }

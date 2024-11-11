@@ -37,6 +37,10 @@ class GetOneClientController
                 'id' => $client->getGender()->getId(),
                 'genderName' => $client->getGender()->getGenderName()
             ],
+            'user' => [
+                'id' => $client->getUser()->getId(),
+                'username' => $client->getUser()->getEmail()
+            ],
             'createdAt' => $client->getCreatedAt(),
             'updatedAt' => $client->getUpdatedAt()
         ], Response::HTTP_OK);
