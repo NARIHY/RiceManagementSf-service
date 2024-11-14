@@ -7,7 +7,7 @@
     },
     "servers": [
         {
-            "url": "/",
+            "url": "http://localhost:8000",
             "description": ""
         }
     ],
@@ -22,108 +22,7 @@
                     "200": {
                         "description": "Arrival collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/Arrival.jsonld-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Arrival-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -164,17 +63,7 @@
                     "201": {
                         "description": "Arrival resource created",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Arrival.jsonld-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Arrival-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Arrival-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
                                 }
@@ -195,17 +84,7 @@
                 "requestBody": {
                     "description": "The new Arrival resource",
                     "content": {
-                        "application/ld+json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Arrival.jsonld-arrival.collection.post_status.collection.post"
-                            }
-                        },
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Arrival-arrival.collection.post_status.collection.post"
-                            }
-                        },
-                        "text/html": {
                             "schema": {
                                 "$ref": "#/components/schemas/Arrival-arrival.collection.post_status.collection.post"
                             }
@@ -226,17 +105,7 @@
                     "200": {
                         "description": "Arrival resource",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Arrival.jsonld-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Arrival-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Arrival-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
                                 }
@@ -276,17 +145,7 @@
                     "200": {
                         "description": "Arrival resource updated",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Arrival.jsonld-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Arrival-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Arrival-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
                                 }
@@ -346,108 +205,7 @@
                     "200": {
                         "description": "Bag collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/Bag.jsonld-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post_stock.bag.collection_stock.collection.read_stock.collection.writte"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Bag-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post_stock.bag.collection_stock.collection.read_stock.collection.writte"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -488,17 +246,7 @@
                     "201": {
                         "description": "Bag resource created",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Bag.jsonld-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Bag-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Bag-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post"
                                 }
@@ -519,17 +267,7 @@
                 "requestBody": {
                     "description": "The new Bag resource",
                     "content": {
-                        "application/ld+json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Bag.jsonld-bag.collection.post"
-                            }
-                        },
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Bag-bag.collection.post"
-                            }
-                        },
-                        "text/html": {
                             "schema": {
                                 "$ref": "#/components/schemas/Bag-bag.collection.post"
                             }
@@ -550,17 +288,7 @@
                     "200": {
                         "description": "Bag resource",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Bag.jsonld-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post_stock.bag.collection_stock.collection.read_stock.collection.writte"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Bag-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post_stock.bag.collection_stock.collection.read_stock.collection.writte"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Bag-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post_stock.bag.collection_stock.collection.read_stock.collection.writte"
                                 }
@@ -600,17 +328,7 @@
                     "200": {
                         "description": "Bag resource updated",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Bag.jsonld-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Bag-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Bag-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post"
                                 }
@@ -660,6 +378,49 @@
                 "deprecated": false
             }
         },
+        "/api/cin": {
+            "get": {
+                "operationId": "api_cin_get_collection",
+                "tags": [
+                    "Cin"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cin collection",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Cin-cin.collection.get"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Retrieves the collection of Cin resources.",
+                "description": "Retrieves the collection of Cin resources.",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "The collection page number",
+                        "required": false,
+                        "deprecated": false,
+                        "allowEmptyValue": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "style": "form",
+                        "explode": false,
+                        "allowReserved": false
+                    }
+                ],
+                "deprecated": false
+            }
+        },
         "/api/clients": {
             "get": {
                 "operationId": "api_clients_get_collection",
@@ -670,108 +431,7 @@
                     "200": {
                         "description": "Client collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -826,19 +486,9 @@
                     "201": {
                         "description": "Client resource created",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
-                                }
-                            },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
-                                }
-                            },
-                            "text/html": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
+                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get_cin.collection.post_cin.collection.get"
                                 }
                             }
                         },
@@ -872,19 +522,9 @@
                 "requestBody": {
                     "description": "The new Client resource",
                     "content": {
-                        "application/ld+json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Client.jsonld-client.collection.post_client.collection.put"
-                            }
-                        },
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Client-client.collection.post_client.collection.put"
-                            }
-                        },
-                        "text/html": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Client-client.collection.post_client.collection.put"
+                                "$ref": "#/components/schemas/Client-client.collection.post_client.collection.put_cin.collection.post"
                             }
                         }
                     },
@@ -903,19 +543,9 @@
                     "200": {
                         "description": "Client resource",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
-                                }
-                            },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
-                                }
-                            },
-                            "text/html": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
+                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get_cin.collection.post_cin.collection.get"
                                 }
                             }
                         }
@@ -967,19 +597,9 @@
                     "200": {
                         "description": "Client resource updated",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
-                                }
-                            },
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
-                                }
-                            },
-                            "text/html": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
+                                    "$ref": "#/components/schemas/Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get_cin.collection.post_cin.collection.get"
                                 }
                             }
                         },
@@ -1030,17 +650,7 @@
                 "requestBody": {
                     "description": "The updated Client resource",
                     "content": {
-                        "application/ld+json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Client.jsonld-client.collection.put"
-                            }
-                        },
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Client-client.collection.put"
-                            }
-                        },
-                        "text/html": {
                             "schema": {
                                 "$ref": "#/components/schemas/Client-client.collection.put"
                             }
@@ -1108,108 +718,7 @@
                     "200": {
                         "description": "GenderManagement collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/GenderManagement.jsonld-gender.collection.get"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/GenderManagement-gender.collection.get"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -1252,108 +761,7 @@
                     "200": {
                         "description": "HistoriqueTemp collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/HistoriqueTemp.jsonld"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/HistoriqueTemp"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -1453,108 +861,7 @@
                     "200": {
                         "description": "Status collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/Status.jsonld-statuses.collection.get_statuses.collection.post"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Status-statuses.collection.get_statuses.collection.post"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -1595,17 +902,7 @@
                     "201": {
                         "description": "Status resource created",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Status.jsonld-statuses.collection.get_statuses.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Status-statuses.collection.get_statuses.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Status-statuses.collection.get_statuses.collection.post"
                                 }
@@ -1626,17 +923,7 @@
                 "requestBody": {
                     "description": "The new Status resource",
                     "content": {
-                        "application/ld+json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Status.jsonld-statuses.collection.post"
-                            }
-                        },
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Status-statuses.collection.post"
-                            }
-                        },
-                        "text/html": {
                             "schema": {
                                 "$ref": "#/components/schemas/Status-statuses.collection.post"
                             }
@@ -1657,17 +944,7 @@
                     "200": {
                         "description": "Status resource",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Status.jsonld-statuses.collection.get_statuses.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Status-statuses.collection.get_statuses.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Status-statuses.collection.get_statuses.collection.post"
                                 }
@@ -1707,17 +984,7 @@
                     "200": {
                         "description": "Status resource updated",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Status.jsonld-statuses.collection.get_statuses.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Status-statuses.collection.get_statuses.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Status-statuses.collection.get_statuses.collection.post"
                                 }
@@ -1777,108 +1044,7 @@
                     "200": {
                         "description": "Stock collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/Stock.jsonld"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Stock"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -1921,108 +1087,7 @@
                     "200": {
                         "description": "TypeCompte collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/TypeCompte.jsonld-typeCompte.collection.get"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/TypeCompte-typeCompte.collection.get"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -2065,108 +1130,7 @@
                     "200": {
                         "description": "Typerice collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/Typerice.jsonld-typerice.collection.get_typerice.collection.post"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Typerice-typerice.collection.get_typerice.collection.post"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -2207,17 +1171,7 @@
                     "201": {
                         "description": "Typerice resource created",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Typerice.jsonld-typerice.collection.get_typerice.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Typerice-typerice.collection.get_typerice.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Typerice-typerice.collection.get_typerice.collection.post"
                                 }
@@ -2238,17 +1192,7 @@
                 "requestBody": {
                     "description": "The new Typerice resource",
                     "content": {
-                        "application/ld+json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Typerice.jsonld-typerice.collection.post"
-                            }
-                        },
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Typerice-typerice.collection.post"
-                            }
-                        },
-                        "text/html": {
                             "schema": {
                                 "$ref": "#/components/schemas/Typerice-typerice.collection.post"
                             }
@@ -2269,17 +1213,7 @@
                     "200": {
                         "description": "Typerice resource",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Typerice.jsonld-typerice.collection.get_typerice.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Typerice-typerice.collection.get_typerice.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Typerice-typerice.collection.get_typerice.collection.post"
                                 }
@@ -2319,17 +1253,7 @@
                     "200": {
                         "description": "Typerice resource updated",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Typerice.jsonld-typerice.collection.get_typerice.collection.post"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Typerice-typerice.collection.get_typerice.collection.post"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Typerice-typerice.collection.get_typerice.collection.post"
                                 }
@@ -2368,17 +1292,7 @@
                 "requestBody": {
                     "description": "The updated Typerice resource",
                     "content": {
-                        "application/ld+json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Typerice.jsonld-typerice.collection.post"
-                            }
-                        },
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Typerice-typerice.collection.post"
-                            }
-                        },
-                        "text/html": {
                             "schema": {
                                 "$ref": "#/components/schemas/Typerice-typerice.collection.post"
                             }
@@ -2432,108 +1346,7 @@
                     "200": {
                         "description": "User collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/User.jsonld-read.User"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/User-read.User"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -2576,108 +1389,7 @@
                     "200": {
                         "description": "User collection",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "member": {
-                                            "type": "array",
-                                            "items": {
-                                                "$ref": "#/components/schemas/User.jsonld-read.User"
-                                            }
-                                        },
-                                        "totalItems": {
-                                            "type": "integer",
-                                            "minimum": 0
-                                        },
-                                        "view": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@id": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "first": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "last": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "previous": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                },
-                                                "next": {
-                                                    "type": "string",
-                                                    "format": "iri-reference"
-                                                }
-                                            },
-                                            "example": {
-                                                "@id": "string",
-                                                "type": "string",
-                                                "first": "string",
-                                                "last": "string",
-                                                "previous": "string",
-                                                "next": "string"
-                                            }
-                                        },
-                                        "search": {
-                                            "type": "object",
-                                            "properties": {
-                                                "@type": {
-                                                    "type": "string"
-                                                },
-                                                "template": {
-                                                    "type": "string"
-                                                },
-                                                "variableRepresentation": {
-                                                    "type": "string"
-                                                },
-                                                "mapping": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                            "@type": {
-                                                                "type": "string"
-                                                            },
-                                                            "variable": {
-                                                                "type": "string"
-                                                            },
-                                                            "property": {
-                                                                "type": [
-                                                                    "string",
-                                                                    "null"
-                                                                ]
-                                                            },
-                                                            "required": {
-                                                                "type": "boolean"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "required": [
-                                        "member"
-                                    ]
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/User-read.User"
-                                    }
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "type": "array",
                                     "items": {
@@ -2720,17 +1432,7 @@
                     "200": {
                         "description": "User resource",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User.jsonld-read.User"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User-read.User"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/User-read.User"
                                 }
@@ -2770,17 +1472,7 @@
                     "200": {
                         "description": "User resource updated",
                         "content": {
-                            "application/ld+json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User.jsonld-read.User"
-                                }
-                            },
                             "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/User-read.User"
-                                }
-                            },
-                            "text/html": {
                                 "schema": {
                                     "$ref": "#/components/schemas/User-read.User"
                                 }
@@ -2819,17 +1511,7 @@
                 "requestBody": {
                     "description": "The updated User resource",
                     "content": {
-                        "application/ld+json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/User.jsonld-writte.User"
-                            }
-                        },
                         "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/User-writte.User"
-                            }
-                        },
-                        "text/html": {
                             "schema": {
                                 "$ref": "#/components/schemas/User-writte.User"
                             }
@@ -2875,99 +1557,6 @@
                 }
             },
             "Arrival-arrival.collection.post_status.collection.post": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "labelName": {
-                        "type": "string"
-                    },
-                    "arrivalDate": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "status": {
-                        "type": "string",
-                        "format": "iri-reference",
-                        "example": "https://example.com/"
-                    },
-                    "bagPrice": {
-                        "type": "number"
-                    },
-                    "bag": {
-                        "type": "string",
-                        "format": "iri-reference",
-                        "example": "https://example.com/"
-                    }
-                }
-            },
-            "Arrival.jsonld-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
-                        ]
-                    },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "labelName": {
-                        "type": "string"
-                    },
-                    "arrivalDate": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "bagPrice": {
-                        "type": "number"
-                    },
-                    "createdAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    },
-                    "bag": {
-                        "$ref": "#/components/schemas/Bag.jsonld-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post"
-                    }
-                }
-            },
-            "Arrival.jsonld-arrival.collection.post_status.collection.post": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
@@ -3070,166 +1659,63 @@
                     }
                 }
             },
-            "Bag.jsonld-arrival.collection.get_arrival.collection.post_statuses.collection.get_statuses.collection.post_bag.collection.get_bag.collection.post": {
+            "Cin-cin.collection.get": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
                 "properties": {
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
+                    "locationZone": {
+                        "type": "string"
+                    },
+                    "locationRegion": {
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
+                    "locationProvince": {
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "quantity": {
-                        "type": "string"
+                    "country": {
+                        "default": "Madagascar",
+                        "example": "Madagascar",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
-            "Bag.jsonld-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post": {
+            "Cin-client.collection.get_client.collection.post_client.collection.put_gender.collection.get_cin.collection.post_cin.collection.get": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
                 "properties": {
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
+                    "locationZone": {
+                        "type": "string"
+                    },
+                    "locationRegion": {
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "quantity": {
-                        "type": "string"
-                    }
-                }
-            },
-            "Bag.jsonld-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post_stock.bag.collection_stock.collection.read_stock.collection.writte": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
+                    "locationProvince": {
+                        "type": [
+                            "string",
+                            "null"
                         ]
                     },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "quantity": {
-                        "type": "string"
-                    },
-                    "stock": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Stock.jsonld-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post_stock.bag.collection_stock.collection.read_stock.collection.writte"
-                        }
-                    }
-                }
-            },
-            "Bag.jsonld-bag.collection.post": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "quantity": {
-                        "type": "string"
+                    "country": {
+                        "default": "Madagascar",
+                        "example": "Madagascar",
+                        "type": [
+                            "string",
+                            "null"
+                        ]
                     }
                 }
             },
@@ -3271,6 +1757,14 @@
                         ],
                         "format": "iri-reference",
                         "example": "https://example.com/"
+                    },
+                    "cin_provenance": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
                     }
                 },
                 "required": [
@@ -3280,7 +1774,64 @@
                     "address"
                 ]
             },
-            "Client-client.collection.post_client.collection.put": {
+            "Client-client.collection.get_client.collection.post_client.collection.put_gender.collection.get_cin.collection.post_cin.collection.get": {
+                "type": "object",
+                "description": "Gestion des clients de notre application",
+                "deprecated": false,
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "lastName": {
+                        "type": "string"
+                    },
+                    "cin": {
+                        "type": "string"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "gender": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/GenderManagement-client.collection.get_client.collection.post_client.collection.put_gender.collection.get_cin.collection.post_cin.collection.get"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    },
+                    "user": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "format": "iri-reference",
+                        "example": "https://example.com/"
+                    },
+                    "cin_provenance": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/components/schemas/Cin-client.collection.get_client.collection.post_client.collection.put_gender.collection.get_cin.collection.post_cin.collection.get"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "name",
+                    "lastName",
+                    "cin",
+                    "address"
+                ]
+            },
+            "Client-client.collection.post_client.collection.put_cin.collection.post": {
                 "type": "object",
                 "description": "Gestion des clients de notre application",
                 "deprecated": false,
@@ -3304,14 +1855,6 @@
                         "type": "string"
                     },
                     "gender": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "iri-reference",
-                        "example": "https://example.com/"
-                    },
-                    "user": {
                         "type": [
                             "string",
                             "null"
@@ -3334,143 +1877,21 @@
                     }
                 }
             },
-            "Client.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get": {
+            "GenderManagement-client.collection.get_client.collection.post_client.collection.put_gender.collection.get": {
                 "type": "object",
-                "description": "Gestion des clients de notre application",
+                "description": "",
                 "deprecated": false,
                 "properties": {
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
-                        ]
-                    },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
                     "id": {
                         "readOnly": true,
                         "type": "integer"
                     },
-                    "name": {
-                        "type": "string"
-                    },
-                    "lastName": {
-                        "type": "string"
-                    },
-                    "cin": {
-                        "type": "string"
-                    },
-                    "address": {
-                        "type": "string"
-                    },
-                    "gender": {
-                        "anyOf": [
-                            {
-                                "$ref": "#/components/schemas/GenderManagement.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get"
-                            },
-                            {
-                                "type": "null"
-                            }
-                        ]
-                    },
-                    "user": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "iri-reference",
-                        "example": "https://example.com/"
-                    }
-                },
-                "required": [
-                    "name",
-                    "lastName",
-                    "cin",
-                    "address"
-                ]
-            },
-            "Client.jsonld-client.collection.post_client.collection.put": {
-                "type": "object",
-                "description": "Gestion des clients de notre application",
-                "deprecated": false,
-                "required": [
-                    "name",
-                    "lastName",
-                    "cin",
-                    "address"
-                ],
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "lastName": {
-                        "type": "string"
-                    },
-                    "cin": {
-                        "type": "string"
-                    },
-                    "address": {
-                        "type": "string"
-                    },
-                    "gender": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "iri-reference",
-                        "example": "https://example.com/"
-                    },
-                    "user": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "iri-reference",
-                        "example": "https://example.com/"
-                    }
-                }
-            },
-            "Client.jsonld-client.collection.put": {
-                "type": "object",
-                "description": "Gestion des clients de notre application",
-                "deprecated": false,
-                "required": [
-                    "address"
-                ],
-                "properties": {
-                    "address": {
+                    "genderName": {
                         "type": "string"
                     }
                 }
             },
-            "GenderManagement-client.collection.get_client.collection.post_client.collection.put_gender.collection.get": {
+            "GenderManagement-client.collection.get_client.collection.post_client.collection.put_gender.collection.get_cin.collection.post_cin.collection.get": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
@@ -3498,133 +1919,11 @@
                     }
                 }
             },
-            "GenderManagement.jsonld-client.collection.get_client.collection.post_client.collection.put_gender.collection.get": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
-                        ]
-                    },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "genderName": {
-                        "type": "string"
-                    }
-                }
-            },
-            "GenderManagement.jsonld-gender.collection.get": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "genderName": {
-                        "type": "string"
-                    }
-                }
-            },
             "HistoriqueTemp": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
                 "properties": {
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "nomTable": {
-                        "type": [
-                            "string",
-                            "null"
-                        ]
-                    },
-                    "action": {
-                        "type": [
-                            "string",
-                            "null"
-                        ]
-                    },
-                    "details": {
-                        "type": [
-                            "string",
-                            "null"
-                        ]
-                    },
-                    "date_action": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    },
-                    "dateAction": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    }
-                }
-            },
-            "HistoriqueTemp.jsonld": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
                     "id": {
                         "readOnly": true,
                         "type": "integer"
@@ -3681,71 +1980,6 @@
                 ]
             },
             "Status-statuses.collection.post": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "required": [
-                    "statusName"
-                ],
-                "properties": {
-                    "statusName": {
-                        "type": "string"
-                    }
-                }
-            },
-            "Status.jsonld-statuses.collection.get_statuses.collection.post": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
-                        ]
-                    },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "statusName": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "statusName"
-                ]
-            },
-            "Status.jsonld-statuses.collection.post": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
@@ -3817,131 +2051,11 @@
                     }
                 }
             },
-            "Stock.jsonld": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "aivalableQuantity": {
-                        "type": "string"
-                    },
-                    "createdAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    },
-                    "bags": {
-                        "writeOnly": true,
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference",
-                            "example": "https://example.com/"
-                        }
-                    },
-                    "bag": {
-                        "type": "array",
-                        "items": {
-                            "type": "string",
-                            "format": "iri-reference",
-                            "example": "https://example.com/"
-                        }
-                    }
-                }
-            },
-            "Stock.jsonld-bag.collection.get_bag.collection.post_arrival.collection.get_arrival.collection.post_stock.bag.collection_stock.collection.read_stock.collection.writte": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
-                        ]
-                    },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "aivalableQuantity": {
-                        "type": "string"
-                    }
-                }
-            },
             "TypeCompte-typeCompte.collection.get": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,
                 "properties": {
-                    "role": {
-                        "type": "string"
-                    }
-                }
-            },
-            "TypeCompte.jsonld-typeCompte.collection.get": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
                     "role": {
                         "type": "string"
                     }
@@ -4020,149 +2134,6 @@
                     }
                 }
             },
-            "Typerice.jsonld": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
-                        ]
-                    },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "riceName": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    },
-                    "createdAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    },
-                    "updatedAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    }
-                },
-                "required": [
-                    "riceName",
-                    "description"
-                ]
-            },
-            "Typerice.jsonld-typerice.collection.get_typerice.collection.post": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
-                        ]
-                    },
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "id": {
-                        "readOnly": true,
-                        "type": "integer"
-                    },
-                    "riceName": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    }
-                },
-                "required": [
-                    "riceName",
-                    "description"
-                ]
-            },
-            "Typerice.jsonld-typerice.collection.post": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "required": [
-                    "riceName",
-                    "description"
-                ],
-                "properties": {
-                    "riceName": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
-                    }
-                }
-            },
             "User-read.User": {
                 "type": "object",
                 "description": "",
@@ -4188,79 +2159,6 @@
                 }
             },
             "User-writte.User": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "roles": {
-                        "description": "The user roles",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                }
-            },
-            "User.jsonld-read.User": {
-                "type": "object",
-                "description": "",
-                "deprecated": false,
-                "properties": {
-                    "@id": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@type": {
-                        "readOnly": true,
-                        "type": "string"
-                    },
-                    "@context": {
-                        "readOnly": true,
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object",
-                                "properties": {
-                                    "@vocab": {
-                                        "type": "string"
-                                    },
-                                    "hydra": {
-                                        "type": "string",
-                                        "enum": [
-                                            "http://www.w3.org/ns/hydra/core#"
-                                        ]
-                                    }
-                                },
-                                "required": [
-                                    "@vocab",
-                                    "hydra"
-                                ],
-                                "additionalProperties": true
-                            }
-                        ]
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "roles": {
-                        "description": "The user roles",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "createdAt": {
-                        "type": [
-                            "string",
-                            "null"
-                        ],
-                        "format": "date-time"
-                    }
-                }
-            },
-            "User.jsonld-writte.User": {
                 "type": "object",
                 "description": "",
                 "deprecated": false,

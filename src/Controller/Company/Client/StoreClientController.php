@@ -2,6 +2,7 @@
 
 namespace App\Controller\Company\Client;
 
+use App\Entity\Company\Cin;
 use App\Entity\Company\Client;
 use App\Entity\GenderManagement;
 use App\Entity\User;
@@ -34,6 +35,8 @@ class StoreClientController
      */
     private EntityManagerInterface $em;
     private Security $security;
+
+    private array $cin;
 
     /**
      * The ValidatorInterface is used to validate the client entity.
@@ -86,7 +89,11 @@ class StoreClientController
         $client->setName($data['name']);
         $client->setLastName($data['lastName']);
         $client->setCin($data['cin']);
+        // Inject cin to $cin
+        $this->cin = $this->validateCin($data['cin'])->checkLocation();
+        $client->setCinProvenance($this->createCinForClient($this->cin));
         $client->setAddress($data['address']);
+
 
         // Retrieve the Gender entity by ID
         $genderId = (int) filter_var($data['gender'], FILTER_SANITIZE_NUMBER_INT);
@@ -135,21 +142,30 @@ class StoreClientController
         $this->em->flush();
 
         // Return a JSON response with the newly created client's details
-        return new JsonResponse([
-            'id' => $client->getId(),
-            'name' => $client->getName(),
-            'lastName' => $client->getLastName(),
-            'address' => $client->getAddress(),
-            'cin' => $client->getCin(),
-            'gender' => [
-                'id' => $gender->getId(),
-                'genderName' => $gender->getGenderName(),
-            ],
-            'user' => [
-                'id' => $client->getUser()->getId(),
-                'username' => $client->getUser()->getEmail()
-            ]
-        ], Response::HTTP_CREATED);
+        return new JsonResponse($client, Response::HTTP_CREATED);
+    }
+
+    private function createCinForClient(array $cin):Cin 
+    {
+        $newCin = new Cin();
+        /* 
+        'zone' => $details['zone'],
+            'region' => $details['region'] ?? 'N/A',
+            'province' => $details['province'] ?? 'N/A',
+            'country' => 'MADAGASCAR',
+            'postal_code' => $code ?? 'N/A'
+        
+        */
+        $newCin->setLocationRegion($cin['region']);
+        $newCin->setLocationProvince($cin['province']);
+        $newCin->setLocationZone($cin['zone']);
+        $newCin->setPostalCode($cin['postal_code']);
+        $newCin->setCountry('Madagascar');
+
+        $this->em->persist($newCin);
+        $this->em->flush();
+        
+        return $newCin;
     }
 
 

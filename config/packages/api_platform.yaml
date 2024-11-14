@@ -8,8 +8,8 @@ api_platform:
         stateless: true
         cache_headers:
             etag: true
-            max_age: 3600
-            shared_max_age: 3600
+            max_age: 120
+            shared_max_age: 120
             vary: ['Content-Type', 'Authorization', 'Origin']
             
             
@@ -19,12 +19,12 @@ api_platform:
                 name: Authorization
                 type: header
     formats:
-        jsonld:
-            mime_types: ['application/ld+json']
+        # jsonld:
+        #     mime_types: ['application/ld+json']
 
         json:
             mime_types: ['application/json']
 
-        html:
-            mime_types: ['text/html']
+        # html:
+        #     mime_types: ['text/html']
         

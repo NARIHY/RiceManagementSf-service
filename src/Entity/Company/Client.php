@@ -23,13 +23,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
 #[ApiResource(
     description: "Gestion des clients de notre application",
-    normalizationContext:['groups' => ['client:collection:get', 'client:collection:post', 'client:collection:put','gender:collection:get']],
+    normalizationContext:['groups' => ['client:collection:get', 'client:collection:post', 'client:collection:put','gender:collection:get','cin:collection:post','cin:collection:get']],
     operations: [
-        new Get(            
-            controller: GetOneClientController::class,
-        ),
+        new Get(),
         new Post(
-            denormalizationContext: ['groups' => ['client:collection:post','client:collection:put']],
+            denormalizationContext: ['groups' => ['client:collection:post','client:collection:put','cin:collection:post']],
             controller: StoreClientController::class,
         ),
         new Put(
@@ -45,7 +43,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 )]
 
 #[QueryParameter(
-    key: 'name', property: 'name'
+    key: 'name', property: 'name',
 )]
 class Client
 {
@@ -82,12 +80,16 @@ class Client
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'clients')]
-    #[Groups('client:collection:get')]
+    #[Groups('client:collection:post')]
     private ?GenderManagement $gender = null;
 
     #[ORM\OneToOne(inversedBy: 'client', cascade: ['persist', 'remove'])]
-    #[Groups('client:collection:post')]
+    #[Groups('client:collection:get')]
     private ?User $user = null;
+
+    #[ORM\OneToOne(inversedBy: 'client', cascade: ['persist', 'remove'])]
+    #[Groups('client:collection:get')]
+    private ?Cin $cin_provenance = null;
 
     
     public function getId(): ?int
@@ -201,6 +203,18 @@ class Client
     public function setUser(?User $user): static
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCinProvenance(): ?Cin
+    {
+        return $this->cin_provenance;
+    }
+
+    public function setCinProvenance(?Cin $cin_provenance): static
+    {
+        $this->cin_provenance = $cin_provenance;
 
         return $this;
     }
