@@ -16,6 +16,21 @@ class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
+    /**
+     * Find one existing CIN in client database
+     * @param mixed $value
+     * @return array
+     */
+    public function findByExistingCin($value): array 
+    {
+        return $this->createQueryBuilder('c')
+                        ->andWhere('c.cin = :val')
+                        ->orderBy('c.id','DESC')
+                        ->setMaxResults(10)
+                        ->getQuery()
+                        ->getResult();
+    }
+
     //    /**
     //     * @return Client[] Returns an array of Client objects
     //     */

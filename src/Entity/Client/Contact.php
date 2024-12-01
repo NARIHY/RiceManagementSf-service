@@ -23,6 +23,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
             denormalizationContext: ['groups' => [ 'contact:collection:post']]
         ),
         new Post(
+            uriTemplate:'/user-contacts',
             normalizationContext: ['groups' => ['contact:collection:get', 'contact:collection:post']],
             denormalizationContext: ['groups' => ['contact:collection:post']],
             controller: ContactPostController::class

@@ -1,1 +1,0 @@
-## Managing service for entreprise
