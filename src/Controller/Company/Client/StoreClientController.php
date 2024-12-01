@@ -6,9 +6,11 @@ use App\Entity\Company\Cin;
 use App\Entity\Company\Client;
 use App\Entity\GenderManagement;
 use App\Entity\User;
+use App\Repository\Company\ClientRepository;
 use App\Repository\UserRepository;
 use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Sucre\Service\Human\CINService;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -36,6 +38,8 @@ class StoreClientController
     private EntityManagerInterface $em;
     private Security $security;
 
+    private ClientRepository $clientRepository;
+
     private array $cin;
 
     /**
@@ -51,11 +55,12 @@ class StoreClientController
      * @param EntityManagerInterface $entityManager The entity manager for database interaction.
      * @param ValidatorInterface $validator The validator for validating entities.
      */
-    public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator, Security $security)
+    public function __construct(EntityManagerInterface $entityManager, ValidatorInterface $validator, Security $security, ClientRepository $clientRepository)
     {
         $this->em = $entityManager;
         $this->validator = $validator;
         $this->security = $security;
+        $this->clientRepository = $clientRepository;
     }
 
     /**
@@ -78,6 +83,7 @@ class StoreClientController
             return new JsonResponse(['errors' => 'Missing required fields.'], Response::HTTP_BAD_REQUEST);
         }
 
+        $this->findExistingCin($data['cin']);
         // Validate the CIN (Client Identification Number)
         $validated = $this->validateCin($data['cin']);
         if ($validated->getCode() !== 200) {
@@ -102,34 +108,30 @@ class StoreClientController
             return new JsonResponse(['errors' => 'Gender not found.'], Response::HTTP_BAD_REQUEST);
         }
         $client->setGender($gender);
-
-        // Retrieve the current logged-in user
-        // Retrieve the current logged-in user
         $user = $this->security->getUser();  // Get the currently authenticated user
         if (!$user) {
             return new JsonResponse(['errors' => 'User is not authenticated.'], Response::HTTP_UNAUTHORIZED);
         }
 
-        // Optionally, if you want to find the user by their userIdentifier
-        $userIdentifier = $user->getUserIdentifier();  // This is typically the username or email
-        $userRepository = $this->em->getRepository(User::class);  // Assuming UserInterface is your user entity
-        $userFromDb = $userRepository->findOneBy(['email' => $userIdentifier]);  // Or 'username' depending on your authentication system
+        
+        
+        $userIdentifier = $user->getUserIdentifier();  
+        $userRepository = $this->em->getRepository(User::class);  
 
-        // Check if the user exists in the database
-        if (!$userFromDb) {
+        $this->findExistingUser(($userRepository->findOneBy(['email' => $userIdentifier]))->getId());
+        
+        if (!$userRepository->findOneBy(['email' => $userIdentifier])) {
             return new JsonResponse(['errors' => 'User not found in database.'], Response::HTTP_BAD_REQUEST);
         }
 
-        // Associate the current user (retrieved from database) with the client
-        $client->setUser($userFromDb);
 
+        
         // Associate the current user with the client
         $client->setUser($user);
 
-        // Set timestamps
-        $now = $this->date_now();
-        $client->setCreatedAt($now);
-        $client->setUpdatedAt($now);
+        
+        $client->setCreatedAt($this->date_now());
+        $client->setUpdatedAt($this->date_now());
 
         // Validate the client entity
         $errors = $this->validator->validate($client);
@@ -188,6 +190,26 @@ class StoreClientController
      */
     private function validateCin(string $cin): CINService
     {
+        
         return new CINService($cin);
+    }
+
+    private function findExistingCin(string $cin): JsonResponse | null
+    {
+        $clientLength = $this->clientRepository->findByExistingCin($cin);
+        if($clientLength) {
+            return new JsonResponse(['error' => 'This CIN already exists in our application'], Response::HTTP_BAD_REQUEST);
+        }
+        return null;
+    }
+
+    // Bug
+    private function findExistingUser(string $user): JsonResponse | null 
+    {
+        $clientLength = $this->clientRepository->findByExistingUser($user);
+        if($clientLength) {
+            return new JsonResponse(['error' => 'User cannot duplicate in one client.'], Response::HTTP_BAD_REQUEST);
+        }
+        return null;
     }
 }

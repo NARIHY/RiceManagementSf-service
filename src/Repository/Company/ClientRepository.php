@@ -24,7 +24,20 @@ class ClientRepository extends ServiceEntityRepository
     public function findByExistingCin($value): array 
     {
         return $this->createQueryBuilder('c')
-                        ->andWhere('c.cin = :val')
+                        ->andWhere('c.cin = :value')
+                        ->setParameter('value', $value)
+                        ->orderBy('c.id','DESC')
+                        ->setMaxResults(10)
+                        ->getQuery()
+                        ->getResult();
+    }
+
+    // Bug sur la relation d'un user et client, récup
+    public function findByExistingUser($value): array 
+    {
+        return $this->createQueryBuilder('c')
+                        ->andWhere('c.user_id = :value')
+                        ->setParameter('value', $value)
                         ->orderBy('c.id','DESC')
                         ->setMaxResults(10)
                         ->getQuery()
