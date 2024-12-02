@@ -100,7 +100,6 @@ class StoreClientController
         $client->setCinProvenance($this->createCinForClient($this->cin));
         $client->setAddress($data['address']);
 
-
         // Retrieve the Gender entity by ID
         $genderId = (int) filter_var($data['gender'], FILTER_SANITIZE_NUMBER_INT);
         $gender = $this->em->getRepository(GenderManagement::class)->find($genderId);
@@ -108,28 +107,24 @@ class StoreClientController
             return new JsonResponse(['errors' => 'Gender not found.'], Response::HTTP_BAD_REQUEST);
         }
         $client->setGender($gender);
+
         $user = $this->security->getUser();  // Get the currently authenticated user
         if (!$user) {
             return new JsonResponse(['errors' => 'User is not authenticated.'], Response::HTTP_UNAUTHORIZED);
         }
 
-        
-        
         $userIdentifier = $user->getUserIdentifier();  
         $userRepository = $this->em->getRepository(User::class);  
 
-        $this->findExistingUser(($userRepository->findOneBy(['email' => $userIdentifier]))->getId());
-        
-        if (!$userRepository->findOneBy(['email' => $userIdentifier])) {
-            return new JsonResponse(['errors' => 'User not found in database.'], Response::HTTP_BAD_REQUEST);
+        // Vérification si l'utilisateur est déjà lié à un client
+        $userCheckResponse = $this->findExistingUser($userIdentifier);
+        if ($userCheckResponse) {
+            return $userCheckResponse;  // Retourne l'erreur si l'utilisateur est déjà lié à un client
         }
 
-
-        
         // Associate the current user with the client
         $client->setUser($user);
 
-        
         $client->setCreatedAt($this->date_now());
         $client->setUpdatedAt($this->date_now());
 
@@ -147,17 +142,9 @@ class StoreClientController
         return new JsonResponse($client, Response::HTTP_CREATED);
     }
 
-    private function createCinForClient(array $cin):Cin 
+    private function createCinForClient(array $cin): Cin
     {
         $newCin = new Cin();
-        /* 
-        'zone' => $details['zone'],
-            'region' => $details['region'] ?? 'N/A',
-            'province' => $details['province'] ?? 'N/A',
-            'country' => 'MADAGASCAR',
-            'postal_code' => $code ?? 'N/A'
-        
-        */
         $newCin->setLocationRegion($cin['region']);
         $newCin->setLocationProvince($cin['province']);
         $newCin->setLocationZone($cin['zone']);
@@ -169,7 +156,6 @@ class StoreClientController
         
         return $newCin;
     }
-
 
     /**
      * Get the current date and time as a DateTimeImmutable object.
@@ -190,26 +176,33 @@ class StoreClientController
      */
     private function validateCin(string $cin): CINService
     {
-        
         return new CINService($cin);
     }
 
     private function findExistingCin(string $cin): JsonResponse | null
     {
         $clientLength = $this->clientRepository->findByExistingCin($cin);
-        if($clientLength) {
+        if ($clientLength) {
             return new JsonResponse(['error' => 'This CIN already exists in our application'], Response::HTTP_BAD_REQUEST);
         }
         return null;
     }
 
-    // Bug
-    private function findExistingUser(string $user): JsonResponse | null 
+    // Correction de la méthode findExistingUser
+    private function findExistingUser(string $userIdentifier): JsonResponse | null 
     {
-        $clientLength = $this->clientRepository->findByExistingUser($user);
-        if($clientLength) {
-            return new JsonResponse(['error' => 'User cannot duplicate in one client.'], Response::HTTP_BAD_REQUEST);
+        // Récupérer l'utilisateur par son identifiant (email)
+        $user = $this->em->getRepository(User::class)->findOneBy(['email' => $userIdentifier]);
+        if (!$user) {
+            return new JsonResponse(['error' => 'User not found in database.'], Response::HTTP_BAD_REQUEST);
         }
-        return null;
+
+        // Vérifier si cet utilisateur est déjà associé à un client
+        $existingClient = $this->clientRepository->findOneBy(['user' => $user]);
+        if ($existingClient) {
+            return new JsonResponse(['error' => 'User is already associated with a client.'], Response::HTTP_BAD_REQUEST);
+        }
+
+        return null;  // Aucun problème trouvé
     }
 }

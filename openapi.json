@@ -749,46 +749,6 @@
                     }
                 ],
                 "deprecated": false
-            },
-            "post": {
-                "operationId": "api_contacts_post",
-                "tags": [
-                    "Contact"
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Contact resource created",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/Contact-contact.collection.get_contact.collection.post"
-                                }
-                            }
-                        },
-                        "links": {}
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "422": {
-                        "description": "Unprocessable entity"
-                    }
-                },
-                "summary": "Creates a Contact resource.",
-                "description": "Creates a Contact resource.",
-                "parameters": [],
-                "requestBody": {
-                    "description": "The new Contact resource",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Contact-contact.collection.post"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "deprecated": false
             }
         },
         "/api/contacts/{id}": {
@@ -830,6 +790,48 @@
                         "allowReserved": false
                     }
                 ],
+                "deprecated": false
+            }
+        },
+        "/api/user-contacts": {
+            "post": {
+                "operationId": "api_user-contacts_post",
+                "tags": [
+                    "Contact"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Contact resource created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contact-contact.collection.get_contact.collection.post"
+                                }
+                            }
+                        },
+                        "links": {}
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "422": {
+                        "description": "Unprocessable entity"
+                    }
+                },
+                "summary": "Creates a Contact resource.",
+                "description": "Creates a Contact resource.",
+                "parameters": [],
+                "requestBody": {
+                    "description": "The new Contact resource",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contact-contact.collection.post"
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "deprecated": false
             }
         },
