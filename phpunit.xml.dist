@@ -6,7 +6,6 @@
          backupGlobals="false"
          colors="true"
          bootstrap="tests/bootstrap.php"
-         convertDeprecationsToExceptions="false"
 >
     <php>
         <ini name="display_errors" value="1" />
@@ -23,17 +22,10 @@
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">src</directory>
-            <directory suffix=".php">sucre </directory>
-        </include>
+    <!-- Couverture : retirez l'attribut `processUncoveredFiles` et l'élément `include` -->
+    <coverage>
+        <directory>./coverage</directory>
     </coverage>
 
-    <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
-    </listeners>
-
-    <extensions>
-    </extensions>
+    <!-- Les listeners sont gérés différemment dans PHPUnit 11 -->
 </phpunit>
