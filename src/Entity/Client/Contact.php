@@ -15,14 +15,17 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(
+            name: 'GetContact',
             normalizationContext: ['groups' => ['contact:collection:get', 'contact:collection:post']],
-            denormalizationContext: ['groups' => ['contact:collection:post']]
+            denormalizationContext: ['groups' => ['contact:collection:post']],
         ),
         new GetCollection(
+            name: 'GetContactCollection',
             normalizationContext: ['groups' => ['contact:collection:get', 'contact:collection:post']],
             denormalizationContext: ['groups' => [ 'contact:collection:post']]
         ),
         new Post(
+            name:'PostContact',
             uriTemplate:'/user-contacts',
             normalizationContext: ['groups' => ['contact:collection:get', 'contact:collection:post']],
             denormalizationContext: ['groups' => ['contact:collection:post']],

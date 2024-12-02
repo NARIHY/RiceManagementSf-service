@@ -8,6 +8,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Controller\Company\Stock\StoreBagController;
 use App\Repository\Stock\BagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -20,20 +21,24 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(
+            name:'GetBag',
             normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post','stock:bag:collection','stock:collection:read','stock:collection:writte']],
             denormalizationContext: ['groups' => ['bag:collection:post', 'bag:arrival:collection','stock:bag:collection']],
             
         ),
         new GetCollection(
+            name:'GetBagCollection',
             normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post','stock:bag:collection','stock:collection:read','stock:collection:writte']],
             denormalizationContext: ['groups' => ['bag:collection:post', 'bag:arrival:collection','stock:bag:collection']]
         ),
         new Post(
+            name:'SaveBag',
             normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post']],
             denormalizationContext: ['groups' => ['bag:collection:post']],
             controller: StoreBagController::class
         ),
-        new Patch(
+        new Put(
+            name:'UpdateBag',
             normalizationContext: ['groups' => ['bag:collection:get', 'bag:collection:post', 'arrival:collection:get', 'arrival:collection:post']],
             denormalizationContext: ['groups' => ['bag:collection:post', 'bag:arrival:collection']]
         )

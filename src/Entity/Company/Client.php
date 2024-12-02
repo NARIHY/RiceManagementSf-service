@@ -25,19 +25,26 @@ use Symfony\Component\Validator\Constraints as Assert;
     description: "Gestion des clients de notre application",
     normalizationContext:['groups' => ['client:collection:get', 'client:collection:post', 'client:collection:put','gender:collection:get','cin:collection:post','cin:collection:get']],
     operations: [
-        new Get(),
+        new Get(
+            name: 'GetClient',
+        ),
         new Post(
+            name: 'PostClient',
             denormalizationContext: ['groups' => ['client:collection:post','client:collection:put','cin:collection:post']],
             controller: StoreClientController::class,
         ),
         new Put(
+            name: 'UpdateClient',
             denormalizationContext: ['groups' => ['client:collection:put']],
             controller: UpdateClientController::class
         ),
         new GetCollection(
+            name:'GetClientCollection',
             normalizationContext: ['groups' => ['client:collection:get', 'client:collection:post', 'client:collection:put','gender:collection:get']],
         ),
-        new Delete()
+        new Delete(
+            name: 'DeleteClient',
+        )
     ],
    
 )]

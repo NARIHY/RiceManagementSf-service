@@ -14,7 +14,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
     normalizationContext: ['groups' => 'cin:collection:get'],
     uriTemplate: '/cin',
     operations: [
-        new GetCollection()
+        new GetCollection(
+            name: 'GetCin',
+        )
     ]
 )]
 class Cin

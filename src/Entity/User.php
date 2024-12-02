@@ -20,15 +20,17 @@ use Symfony\Component\Validator\Constraints as Assert;
     ApiResource(
         operations: [
             new Get(
-
+                name: 'GetAllUser',
             ),
             new GetCollection(
-
+                name: 'GetOneUser',
             ),
             new Put(
+                name: 'UpdateOneUser',
                 denormalizationContext: ['groups' => ['writte:User']]
             ),
             new GetCollection(
+                name: 'GetUserConnected',
                 uriTemplate: '/me',
                 controller: GetUserConnected::class
             )

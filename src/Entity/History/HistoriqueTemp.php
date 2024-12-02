@@ -12,7 +12,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ApiResource(
     uriTemplate: 'History/temp',
     operations: [
-        new GetCollection()
+        new GetCollection(
+            name:'HistoriquesCollection'
+        )
     ]
 )]
 class HistoriqueTemp

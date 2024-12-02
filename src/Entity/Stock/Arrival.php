@@ -18,12 +18,18 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     normalizationContext: ['groups' => ['arrival:collection:get', 'arrival:collection:post', 'statuses:collection:get','statuses:collection:post','bag:collection:get','bag:collection:post']],
     operations: [
-        new Get(),
-        new GetCollection(), 
+        new Get(
+            name:'GetArrival',
+        ),
+        new GetCollection(
+            name:'GetArrivalCollection',
+        ), 
         new Patch(
+            name:'UpdateArrival',
             denormalizationContext: ['groups' => ['arrival:collection:post', 'status:collection:post']]
         ),
         new Post(
+            name:'SaveArrival',
             denormalizationContext: ['groups' => ['arrival:collection:post', 'status:collection:post']]
         )
     ]

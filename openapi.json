@@ -14,7 +14,7 @@
     "paths": {
         "/api/arrivals": {
             "get": {
-                "operationId": "api_arrivals_get_collection",
+                "operationId": "GetArrivalCollection",
                 "tags": [
                     "Arrival"
                 ],
@@ -55,7 +55,7 @@
                 "deprecated": false
             },
             "post": {
-                "operationId": "api_arrivals_post",
+                "operationId": "SaveArrival",
                 "tags": [
                     "Arrival"
                 ],
@@ -97,7 +97,7 @@
         },
         "/api/arrivals/{id}": {
             "get": {
-                "operationId": "api_arrivals_id_get",
+                "operationId": "GetArrival",
                 "tags": [
                     "Arrival"
                 ],
@@ -137,7 +137,7 @@
                 "deprecated": false
             },
             "patch": {
-                "operationId": "api_arrivals_id_patch",
+                "operationId": "UpdateArrival",
                 "tags": [
                     "Arrival"
                 ],
@@ -197,7 +197,7 @@
         },
         "/api/bags": {
             "get": {
-                "operationId": "api_bags_get_collection",
+                "operationId": "GetBagCollection",
                 "tags": [
                     "Bag"
                 ],
@@ -238,7 +238,7 @@
                 "deprecated": false
             },
             "post": {
-                "operationId": "api_bags_post",
+                "operationId": "SaveBag",
                 "tags": [
                     "Bag"
                 ],
@@ -280,7 +280,7 @@
         },
         "/api/bags/{id}": {
             "get": {
-                "operationId": "api_bags_id_get",
+                "operationId": "GetBag",
                 "tags": [
                     "Bag"
                 ],
@@ -319,8 +319,8 @@
                 ],
                 "deprecated": false
             },
-            "patch": {
-                "operationId": "api_bags_id_patch",
+            "put": {
+                "operationId": "UpdateBag",
                 "tags": [
                     "Bag"
                 ],
@@ -346,8 +346,8 @@
                         "description": "Resource not found"
                     }
                 },
-                "summary": "Updates the Bag resource.",
-                "description": "Updates the Bag resource.",
+                "summary": "Replaces the Bag resource.",
+                "description": "Replaces the Bag resource.",
                 "parameters": [
                     {
                         "name": "id",
@@ -367,7 +367,7 @@
                 "requestBody": {
                     "description": "The updated Bag resource",
                     "content": {
-                        "application/merge-patch+json": {
+                        "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Bag-bag.collection.post_bag.arrival.collection"
                             }
@@ -380,7 +380,7 @@
         },
         "/api/cin": {
             "get": {
-                "operationId": "api_cin_get_collection",
+                "operationId": "GetCin",
                 "tags": [
                     "Cin"
                 ],
@@ -423,7 +423,7 @@
         },
         "/api/clients": {
             "get": {
-                "operationId": "api_clients_get_collection",
+                "operationId": "GetClientCollection",
                 "tags": [
                     "Client"
                 ],
@@ -478,7 +478,7 @@
                 "deprecated": false
             },
             "post": {
-                "operationId": "api_clients_post",
+                "operationId": "PostClient",
                 "tags": [
                     "Client"
                 ],
@@ -535,7 +535,7 @@
         },
         "/api/clients/{id}": {
             "get": {
-                "operationId": "api_clients_id_get",
+                "operationId": "GetClient",
                 "tags": [
                     "Client"
                 ],
@@ -589,7 +589,7 @@
                 "deprecated": false
             },
             "put": {
-                "operationId": "api_clients_id_put",
+                "operationId": "UpdateClient",
                 "tags": [
                     "Client"
                 ],
@@ -661,7 +661,7 @@
                 "deprecated": false
             },
             "delete": {
-                "operationId": "api_clients_id_delete",
+                "operationId": "DeleteClient",
                 "tags": [
                     "Client"
                 ],
@@ -710,7 +710,7 @@
         },
         "/api/contacts": {
             "get": {
-                "operationId": "api_contacts_get_collection",
+                "operationId": "GetContactCollection",
                 "tags": [
                     "Contact"
                 ],
@@ -753,7 +753,7 @@
         },
         "/api/contacts/{id}": {
             "get": {
-                "operationId": "api_contacts_id_get",
+                "operationId": "GetContact",
                 "tags": [
                     "Contact"
                 ],
@@ -795,7 +795,7 @@
         },
         "/api/user-contacts": {
             "post": {
-                "operationId": "api_user-contacts_post",
+                "operationId": "PostContact",
                 "tags": [
                     "Contact"
                 ],
@@ -880,7 +880,7 @@
         },
         "/api/History/temp": {
             "get": {
-                "operationId": "api_Historytemp_get_collection",
+                "operationId": "HistoriquesCollection",
                 "tags": [
                     "HistoriqueTemp"
                 ],
@@ -980,7 +980,7 @@
         },
         "/api/statuses": {
             "get": {
-                "operationId": "api_statuses_get_collection",
+                "operationId": "GetStatusCollection",
                 "tags": [
                     "Status"
                 ],
@@ -1021,7 +1021,7 @@
                 "deprecated": false
             },
             "post": {
-                "operationId": "api_statuses_post",
+                "operationId": "SaveStatus",
                 "tags": [
                     "Status"
                 ],
@@ -1063,7 +1063,7 @@
         },
         "/api/statuses/{id}": {
             "get": {
-                "operationId": "api_statuses_id_get",
+                "operationId": "GetStatus",
                 "tags": [
                     "Status"
                 ],
@@ -1102,8 +1102,8 @@
                 ],
                 "deprecated": false
             },
-            "patch": {
-                "operationId": "api_statuses_id_patch",
+            "put": {
+                "operationId": "UpdateStatus",
                 "tags": [
                     "Status"
                 ],
@@ -1129,8 +1129,8 @@
                         "description": "Resource not found"
                     }
                 },
-                "summary": "Updates the Status resource.",
-                "description": "Updates the Status resource.",
+                "summary": "Replaces the Status resource.",
+                "description": "Replaces the Status resource.",
                 "parameters": [
                     {
                         "name": "id",
@@ -1150,7 +1150,7 @@
                 "requestBody": {
                     "description": "The updated Status resource",
                     "content": {
-                        "application/merge-patch+json": {
+                        "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Status-statuses.collection.post"
                             }
@@ -1163,7 +1163,7 @@
         },
         "/api/stocks": {
             "get": {
-                "operationId": "api_stocks_get_collection",
+                "operationId": "GetStockCollection",
                 "tags": [
                     "Stock"
                 ],
@@ -1249,7 +1249,7 @@
         },
         "/api/typerices": {
             "get": {
-                "operationId": "api_typerices_get_collection",
+                "operationId": "GetTypeRiceCollection",
                 "tags": [
                     "Typerice"
                 ],
@@ -1290,7 +1290,7 @@
                 "deprecated": false
             },
             "post": {
-                "operationId": "api_typerices_post",
+                "operationId": "SaveTypeRice",
                 "tags": [
                     "Typerice"
                 ],
@@ -1332,7 +1332,7 @@
         },
         "/api/typerices/{id}": {
             "get": {
-                "operationId": "api_typerices_id_get",
+                "operationId": "GetTypeRice",
                 "tags": [
                     "Typerice"
                 ],
@@ -1372,7 +1372,7 @@
                 "deprecated": false
             },
             "put": {
-                "operationId": "api_typerices_id_put",
+                "operationId": "UpdateTypeRice",
                 "tags": [
                     "Typerice"
                 ],
@@ -1430,7 +1430,7 @@
                 "deprecated": false
             },
             "delete": {
-                "operationId": "api_typerices_id_delete",
+                "operationId": "DeleteTypeRice",
                 "tags": [
                     "Typerice"
                 ],
@@ -1465,7 +1465,7 @@
         },
         "/api/me": {
             "get": {
-                "operationId": "api_me_get_collection",
+                "operationId": "GetUserConnected",
                 "tags": [
                     "User"
                 ],
@@ -1508,7 +1508,7 @@
         },
         "/api/users": {
             "get": {
-                "operationId": "api_users_get_collection",
+                "operationId": "GetOneUser",
                 "tags": [
                     "User"
                 ],
@@ -1551,7 +1551,7 @@
         },
         "/api/users/{id}": {
             "get": {
-                "operationId": "api_users_id_get",
+                "operationId": "GetAllUser",
                 "tags": [
                     "User"
                 ],
@@ -1591,7 +1591,7 @@
                 "deprecated": false
             },
             "put": {
-                "operationId": "api_users_id_put",
+                "operationId": "UpdateOneUser",
                 "tags": [
                     "User"
                 ],

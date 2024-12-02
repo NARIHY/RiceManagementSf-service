@@ -18,20 +18,26 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     operations: [
         new Get(
+            name:'GetTypeRice',
             normalizationContext: ['groups' => ['typerice:collection:get', 'typerice:collection:post']]
         ),
         new GetCollection(
+            name:'GetTypeRiceCollection',
             normalizationContext: ['groups' => ['typerice:collection:get', 'typerice:collection:post']]
         ),
         new Post(
+            name:'SaveTypeRice',
             normalizationContext: ['groups' => ['typerice:collection:get', 'typerice:collection:post']],
             denormalizationContext: ['groups' => ['typerice:collection:post']]
         ),
         new Put(
+            name:'UpdateTypeRice',
             normalizationContext: ['groups' => ['typerice:collection:get', 'typerice:collection:post']],
             denormalizationContext: ['groups' => ['typerice:collection:post']]
         ),
-        new Delete()
+        new Delete(
+            name:'DeleteTypeRice',
+        )
     ]
 )]
 class Typerice

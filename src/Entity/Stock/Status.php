@@ -7,6 +7,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Repository\Stock\StatusRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -18,16 +19,20 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ApiResource(
     operations: [
         new Get(
+            name:'GetStatus',
             normalizationContext: ['groups' => ['statuses:collection:get','statuses:collection:post']]
         ),
         new GetCollection(
+            name:'GetStatusCollection',
             normalizationContext: ['groups' => ['statuses:collection:get','statuses:collection:post']]
         ),
         new Post(
+            name:'SaveStatus',
             normalizationContext: ['groups' => ['statuses:collection:get','statuses:collection:post']],
             denormalizationContext: ['groups' => ['statuses:collection:post']]
         ),
-        new Patch(
+        new Put(
+            name:'UpdateStatus',
             normalizationContext: ['groups' => ['statuses:collection:get','statuses:collection:post']],
             denormalizationContext: ['groups' => ['statuses:collection:post']]
         )

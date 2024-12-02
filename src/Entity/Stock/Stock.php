@@ -14,7 +14,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: StockRepository::class)]
 #[ApiResource(
     operations: [
-        new GetCollection()
+        new GetCollection(
+            name:'GetStockCollection',
+        )
     ]
 )]
 class Stock
