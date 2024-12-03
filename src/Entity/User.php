@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
     ApiResource(
         operations: [
             new Get(
-                name: 'GetAllUser',
+                name: 'GetAllUser',                
             ),
             new GetCollection(
                 name: 'GetOneUser',
@@ -36,13 +36,15 @@ use Symfony\Component\Validator\Constraints as Assert;
             )
             ],
             normalizationContext: ['groups' => ['read:User']]
-    )
+        ),
+        
 ]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('read:User')]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
@@ -69,9 +71,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('read:User')]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
+    #[Groups('read:User')]
     private ?Client $client = null;
 
     public function getId(): ?int
