@@ -10,4 +10,4 @@ INSERT INTO status (status_name) VALUES
 ('On Sale'),
 ('Quality Check');
 
-# status for all disponible status in service
+# status for all disponible status in services
