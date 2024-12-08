@@ -63,6 +63,14 @@ class Contact
     #[Groups('contact:collection:get')]
     private ?\DateTimeInterface $creationDate = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('contact:collection:post')]
+    private ?string $subject = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups('contact:collection:post')]
+    private ?string $message = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,6 +132,30 @@ class Contact
     public function setCreationDate(\DateTimeInterface $creationDate): static
     {
         $this->creationDate = $creationDate;
+
+        return $this;
+    }
+
+    public function getSubject(): ?string
+    {
+        return $this->subject;
+    }
+
+    public function setSubject(?string $subject): static
+    {
+        $this->subject = $subject;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?string $message): static
+    {
+        $this->message = $message;
 
         return $this;
     }
